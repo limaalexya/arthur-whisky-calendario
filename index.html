@@ -1,0 +1,611 @@
+<html lang="pt-BR"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arthur Whisky — Calendário Editorial Junho 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#0F0C08; --ink2:#1E1812; --ink3:#2E2820;
+  --cream:#F5EFE4;
+  --gold:#B8860B; --gold2:#D4A017; --gold-pale:#FBF3DC; --gold-muted:#7A5C00;
+  --p1:#9B5E1A; --p1p:#FDF3E3;
+  --p2:#1A4A6B; --p2p:#E6F2FA;
+  --p3:#1E4D2E; --p3p:#E8F5EC;
+  --p4:#6B1A3A; --p4p:#F9E8EF;
+  --p5:#2E1A6B; --p5p:#EEE8F9;
+  --pr:#3A3530; --prp:#EDEBE6;
+  --pc:#5C1A1A; --pcp:#F9E8E8;
+  --f1:#C0580A; --f2:#1A6BB5; --f3:#1A7A5C; --f4:#7A1A6B; --f5:#4A6B1A;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);}
+
+header{background:var(--ink);padding:3.5rem 2rem 3rem;text-align:center;position:relative;overflow:hidden;}
+header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 20% 50%,rgba(184,134,11,.16) 0%,transparent 70%),radial-gradient(ellipse 40% 60% at 80% 30%,rgba(184,134,11,.09) 0%,transparent 70%);}
+header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.hi{position:relative;z-index:1;}
+.he{font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--gold2);margin-bottom:1rem;}
+header h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,3.8rem);font-weight:700;color:#fff;line-height:1.05;margin-bottom:.4rem;}
+header h1 em{color:var(--gold2);font-style:normal;}
+.hs{font-size:13px;color:rgba(255,255,255,.4);font-weight:300;letter-spacing:.08em;}
+.hl{width:36px;height:1px;background:var(--gold);margin:1.5rem auto 0;}
+
+.legend{background:var(--ink2);padding:.85rem 2rem;display:flex;flex-wrap:wrap;gap:.6rem 1.3rem;justify-content:center;border-bottom:1px solid rgba(255,255,255,.05);}
+.lsep{width:1px;height:14px;background:rgba(255,255,255,.1);align-self:center;}
+.li{display:flex;align-items:center;gap:5px;font-size:10px;color:rgba(255,255,255,.52);}
+.ld{width:8px;height:8px;border-radius:2px;flex-shrink:0;}
+.lf{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.ldash{background:transparent!important;border:1.5px dashed rgba(255,255,255,.35);border-radius:50%;width:9px;height:9px;}
+.ltitle{font-size:9px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.3);align-self:center;}
+
+main{max-width:1320px;margin:0 auto;padding:2rem 1.5rem 5rem;}
+
+.cal-header{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:5px;}
+.cdn{text-align:center;font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--pr);padding:.4rem 0;opacity:.65;}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;}
+
+.quinzena-divider{grid-column:1/-1;background:var(--ink2);color:rgba(255,255,255,.7);padding:.55rem 1.1rem;border-radius:7px;font-size:10px;font-weight:500;letter-spacing:.08em;display:flex;align-items:center;gap:.5rem;margin:.3rem 0;border-left:3px solid var(--gold);}
+.quinzena-divider em{color:var(--gold2);font-style:normal;}
+
+.cc{background:#fff;border:1.5px solid rgba(15,12,8,.08);border-radius:9px;min-height:158px;padding:8px 7px;position:relative;transition:box-shadow .18s,border-color .18s;}
+.cc.empty{background:transparent;border-color:transparent;}
+.cc.we{background:#FAF8F4;}
+.cc.past{background:#F2EDE4;opacity:.5;}
+.cc.hp:hover{box-shadow:0 4px 22px rgba(15,12,8,.11);}
+.cc.drag-over{border-color:var(--gold);background:var(--gold-pale)!important;box-shadow:0 0 0 2px var(--gold);}
+.cc.dragging-source{opacity:.38;}
+.dn{font-size:11px;font-weight:600;color:var(--ink3);margin-bottom:5px;letter-spacing:.02em;}
+.past-label{font-size:8px;color:rgba(30,24,18,.28);font-style:italic;}
+
+.pp{display:block;font-size:9.5px;font-weight:500;padding:4px 22px 4px 7px;border-radius:5px;margin-bottom:3px;line-height:1.35;cursor:grab;border:none;text-align:left;width:100%;position:relative;transition:opacity .15s,transform .15s;user-select:none;}
+.pp:hover{opacity:.82;transform:translateY(-1px);}
+.pp:active{cursor:grabbing;}
+.fdot{position:absolute;top:5px;right:6px;width:7px;height:7px;border-radius:50%;}
+.f1-dot{background:var(--f1);} .f2-dot{background:var(--f2);} .f3-dot{background:var(--f3);} .f4-dot{background:var(--f4);} .f5-dot{background:var(--f5);}
+
+.p1{background:var(--p1p);color:var(--p1);}
+.p2{background:var(--p2p);color:var(--p2);}
+.p3{background:var(--p3p);color:var(--p3);}
+.p4{background:var(--p4p);color:var(--p4);}
+.p5{background:var(--p5p);color:var(--p5);}
+.pr{background:var(--prp);color:var(--pr);}
+.pc{background:var(--pcp);color:var(--pc);}
+
+.sp{display:block;font-size:8.5px;font-weight:400;padding:2px 6px 2px 15px;border-radius:4px;margin-bottom:2px;border:1px dashed rgba(90,80,70,.3);background:transparent;color:rgba(30,24,18,.45);text-align:left;width:100%;cursor:pointer;transition:opacity .15s;position:relative;}
+.sp:hover{opacity:.65;}
+.sp::before{content:'';position:absolute;left:5px;top:50%;transform:translateY(-50%);width:6px;height:6px;border-radius:50%;border:1px dashed rgba(90,80,70,.45);}
+
+.ov{display:none;position:fixed;inset:0;background:rgba(15,12,8,.65);backdrop-filter:blur(5px);z-index:100;align-items:center;justify-content:center;padding:1rem;}
+.ov.open{display:flex;}
+.mo{background:var(--cream);border-radius:14px;max-width:520px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:0 32px 80px rgba(15,12,8,.35);}
+.mh{background:var(--ink);padding:1.5rem 1.5rem 1.25rem;border-radius:14px 14px 0 0;position:relative;}
+.mcl{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.1);border:none;color:#fff;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;}
+.mcl:hover{background:rgba(255,255,255,.2);}
+.mp{font-size:9.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--gold2);margin-bottom:5px;}
+.mt{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:#fff;line-height:1.25;margin-bottom:8px;}
+.mbadges{display:flex;gap:.45rem;flex-wrap:wrap;}
+.mb{padding:3px 9px;border-radius:3px;font-size:9px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;}
+.mb-pilar{background:rgba(255,255,255,.1);color:rgba(255,255,255,.65);}
+.mb-f1{background:rgba(192,88,10,.25);color:#E07030;} .mb-f2{background:rgba(26,107,181,.25);color:#5090D0;}
+.mb-f3{background:rgba(26,122,92,.25);color:#30A078;} .mb-f4{background:rgba(122,26,107,.25);color:#B050A0;}
+.mb-f5{background:rgba(74,107,26,.25);color:#70A030;}
+.mb-j{background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);}
+.mb-cap{background:rgba(184,134,11,.2);color:var(--gold2);}
+.mb-atv{background:rgba(26,138,74,.15);color:#30A060;}
+.mb-open{background:rgba(255,255,255,.08);color:rgba(255,255,255,.4);font-style:italic;}
+.mbody{padding:1.25rem 1.5rem 1.5rem;}
+.mst{font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(30,24,18,.32);margin-bottom:6px;margin-top:1.1rem;}
+.mst:first-child{margin-top:0;}
+.mfmt{font-size:12px;font-weight:500;color:var(--ink3);padding:6px 10px;background:rgba(15,12,8,.04);border-radius:6px;}
+.mobj{font-size:12px;color:var(--ink3);line-height:1.58;padding:8px 12px;background:rgba(15,12,8,.04);border-radius:6px;}
+.mgancho{font-size:13px;font-weight:600;color:var(--ink);line-height:1.4;padding:10px 14px;background:var(--gold-pale);border-radius:8px;border-left:3px solid var(--gold);}
+.mdir{font-size:12px;color:var(--ink3);line-height:1.68;padding:10px 14px;background:#fff;border-radius:8px;border:1px solid rgba(15,12,8,.08);}
+.mcta{font-size:12px;color:var(--ink3);line-height:1.55;padding:10px 14px;background:var(--gold-pale);border-radius:8px;border-left:3px solid var(--gold);}
+.mopen-notice{font-size:11.5px;color:var(--gold-muted);line-height:1.65;padding:12px 14px;background:var(--gold-pale);border-radius:8px;border:1px dashed var(--gold);}
+.slist{list-style:none;background:#fff;border-radius:8px;border:1px solid rgba(15,12,8,.07);overflow:hidden;}
+.slist li{padding:9px 12px 9px 28px;border-bottom:1px solid rgba(15,12,8,.05);position:relative;}
+.slist li:last-child{border-bottom:none;}
+.slist li::before{content:'';position:absolute;left:10px;top:13px;width:8px;height:8px;border-radius:50%;border:1.5px dashed rgba(90,80,70,.45);}
+.sn{font-size:9px;font-weight:600;color:var(--gold-muted);letter-spacing:.05em;display:block;margin-bottom:1px;}
+.st{font-size:11px;font-weight:600;color:var(--ink3);display:block;margin-bottom:3px;}
+.sd{font-size:11.5px;color:rgba(30,24,18,.62);line-height:1.58;}
+
+.drag-hint{font-size:9px;color:rgba(30,24,18,.25);text-align:center;margin-top:.75rem;letter-spacing:.04em;}
+
+footer{background:var(--ink);text-align:center;padding:1.5rem;font-size:11px;color:rgba(255,255,255,.22);letter-spacing:.06em;}
+footer em{color:var(--gold2);font-style:normal;}
+
+@media(max-width:768px){
+  .cc{min-height:90px;padding:5px;} .pp{font-size:8.5px;padding:3px 16px 3px 5px;}
+  .sp{font-size:7.5px;} main{padding:1rem .75rem 3rem;} .legend{gap:.5rem 1rem;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hi">
+    <div class="he">Planejamento editorial · Uso interno · ami lab</div>
+    <h1>Arthur <em>Whisky</em></h1>
+    <div class="hs">Calendário de Conteúdo — Junho 2026</div>
+    <div class="hl"></div>
+  </div>
+</header>
+
+<div class="legend">
+  <span class="ltitle">Pilares</span>
+  <div class="li"><div class="ld" style="background:var(--p1)"></div>Arte da Destilação</div>
+  <div class="li"><div class="ld" style="background:var(--p2)"></div>Sensorial Brasileiro</div>
+  <div class="li"><div class="ld" style="background:var(--p3)"></div>Momentos que Pedem Arthur</div>
+  <div class="li"><div class="ld" style="background:var(--p4)"></div>Orgulho Nacional</div>
+  <div class="li"><div class="ld" style="background:var(--p5)"></div>Comunidade Arthur</div>
+  <div class="li"><div class="ld" style="background:var(--pc)"></div>Comercial</div>
+  <div class="li"><div class="ld" style="background:var(--pr)"></div>Respiro</div>
+  <div class="lsep"></div>
+  <span class="ltitle">Funil de Growth</span>
+  <div class="li"><div class="lf" style="background:var(--f1)"></div>1 · Aquisição</div>
+  <div class="li"><div class="lf" style="background:var(--f2)"></div>2 · Ativação</div>
+  <div class="li"><div class="lf" style="background:var(--f3)"></div>3 · Retenção</div>
+  <div class="li"><div class="lf" style="background:var(--f4)"></div>4 · Conversão</div>
+  <div class="li"><div class="lf" style="background:var(--f5)"></div>5 · Recomendação</div>
+  <div class="lsep"></div>
+  <div class="li"><div class="ld ldash"></div>Stories</div>
+</div>
+
+<main>
+  <div class="cal-header">
+    <div class="cdn">Seg</div><div class="cdn">Ter</div><div class="cdn">Qua</div>
+    <div class="cdn">Qui</div><div class="cdn">Sex</div><div class="cdn">Sáb</div><div class="cdn">Dom</div>
+  </div>
+  <div id="grid" class="cal-grid"></div>
+  <p class="drag-hint">💡 Arraste qualquer card para reorganizar o calendário entre os dias disponíveis</p>
+</main>
+
+<footer>Calendário editorial Arthur Whisky — Junho 2026 · <em>ami lab</em> · uso interno</footer>
+
+<div class="ov" id="ov" onclick="closeM(event)">
+  <div class="mo">
+    <div class="mh">
+      <button class="mcl" onclick="closeM()">✕</button>
+      <div class="mp" id="mp"></div>
+      <div class="mt" id="mt"></div>
+      <div class="mbadges" id="mb"></div>
+    </div>
+    <div class="mbody" id="mbody"></div>
+  </div>
+</div>
+
+<script>
+const POSTS = {
+
+10:{
+  cls:'p3', pilar:'Momentos que Pedem Arthur', funil:'f1', jornada:'Descoberta', captacao:false,
+  formato:'Carrossel — 4 slides',
+  objetivo:'Associar o Arthur Whisky a momentos a dois. Alcançar novo público pelo apelo afetivo do Dia dos Namorados. Introduzir a mecânica da oferta dos copos de forma natural e desejável.',
+  gancho:'Para aproveitar melhor os momentos a dois.',
+  dir:'Carrossel de rituais a dois que trazem o Arthur Whisky como protagonista discreto, não forçado. Slide 1: cena de chegada em casa numa noite qualquer, dois copos na mesa. Slide 2: o silêncio bom de quem não precisa de motivo para celebrar. Slide 3: a garrafa aberta como gesto de cuidado. Slide 4: CTA suave da oferta de Dia dos Namorados — na compra de duas garrafas, ganhe dois copos exclusivos. Arte com ambiente íntimo e elegante. Fotos de produto disponíveis.',
+  cta:'"Na compra de duas garrafas Arthur Whisky, dois copos exclusivos são seus. Link na bio."',
+  stories:[
+    {n:'S1 · Ter', t:'Enquete afetiva', d:'"O que faz um momento a dois ser especial?" — enquete com opções leves. Não força resposta sobre whisky. Cria identificação antes da oferta.'},
+    {n:'S2 · Ter', t:'Resposta + produto', d:'Segue a enquete com a resposta mais votada e conecta com o produto de forma natural. "Para esses momentos, tem que ser Arthur Whisky."'},
+    {n:'S3 · Qua', t:'Oferta dos copos', d:'"Duas garrafas. Dois copos exclusivos. O kit certo para o Dia dos Namorados." — imagem da composição + link de compra.'},
+    {n:'S4 · Qua', t:'Contagem regressiva', d:'"Último dia para garantir a entrega. Link na bio." — urgência real, tom calmo.'},
+  ]
+},
+
+11:{
+  cls:'p4', pilar:'Orgulho Nacional', funil:'f1', jornada:'Descoberta', captacao:false,
+  formato:'Carrossel — 5 slides',
+  objetivo:'Ampliar alcance com argumento de brasilidade. Desafiar o preconceito com o produto nacional de forma confiante e direta.',
+  gancho:'O melhor whisky que você vai tomar é feito no Brasil.',
+  dir:'Carrossel editorial com argumento de processo e paladar. Sem imagem de concorrente. Slide 1: gancho direto. Slide 2: a maioria escolhe whisky pela etiqueta, poucos escolhem pelo que está dentro da garrafa. Slide 3: o Brasil tem clima, cevada, técnica e dedicação para produzir destilados que surpreendem qualquer paladar. Slide 4: o Arthur Whisky é a prova disso. Slide 5: "Prove antes de julgar." Tom confiante, sem defensividade.',
+  cta:'"Você só vai entender quando provar. Link na bio."',
+  stories:[
+    {n:'S5 · Qui', t:'Dado de mercado', d:'"O Brasil é o 5º maior mercado de whisky do mundo." — visual limpo com esse dado e a garrafa. Sem comentário extra. O dado fala sozinho.'},
+    {n:'S6 · Qui', t:'Contexto sobre o mercado', d:'Complementa o dado anterior: o Brasil não só consome muito whisky. Começa a produzir alguns dos melhores. Texto curto, imagem do produto.'},
+    {n:'S7 · Sex', t:'Enquete de percepção', d:'"Quando alguém fala em whisky bom, você pensa em..." (importado / tanto faz, desde que seja bom) — coleta dado real do público.'},
+    {n:'S8 · Sex', t:'CTA de fim de semana', d:'"Fim de semana chegou. O Arthur Whisky está esperando." — link de compra.'},
+  ]
+},
+
+13:{
+  cls:'p1', pilar:'Arte da Destilação', funil:'f2', jornada:'Consideração', captacao:false,
+  formato:'Carrossel — 4 slides',
+  objetivo:'Converter curiosidade em interesse real. Educar sobre os diferenciais técnicos do produto sem jargão e sem citar destilaria.',
+  gancho:'Tem três coisas no Arthur Whisky que você só vai entender a diferença quando ele estiver no seu copo.',
+  dir:'Carrossel com um diferencial por slide. Slide 1: a rolha que veda como nenhuma outra, sem oxidação, sem perder nada do que estava dentro da garrafa. Slide 2: o barril que dá cor e sabor, e o que cada tipo de madeira faz com o destilado ao longo do tempo. Slide 3: a maturação em clima tropical, o Brasil alcança em meses o que destilarias em climas frios levam anos para conquistar. Slide 4: CTA. Fotos macro de produto disponíveis para ilustrar cada slide.',
+  cta:'"Quanto mais você sabe, mais você sente. Conheça na bio."',
+  stories:[
+    {n:'S9 · Sáb', t:'Educativo sobre o barril', d:'Um dado curto e visual sobre o que o barril faz no sabor do destilado. Não precisa de enquete, só educação densa e acessível em formato de story.'},
+    {n:'S10 · Sáb', t:'Clima tropical como vantagem', d:'Explica de forma direta como o calor brasileiro acelera a maturação. Fato técnico traduzido para linguagem de quem bebe, não de quem estuda.'},
+    {n:'S11 · Dom', t:'Poll: antes ou depois de saber?', d:'"Você aprecia mais quando entende como foi feito — ou prefere só sentir no copo?" — Gera engajamento e dado sobre o perfil do público.'},
+    {n:'S12 · Dom', t:'Teaser da semana seguinte', d:'"Na semana que vem a gente fala sobre quem faz o Arthur Whisky. Fica ligado."'},
+  ]
+},
+
+14:{
+  cls:'pr', pilar:'Respiro Visual', funil:'f1', jornada:'Descoberta', captacao:false,
+  formato:'Vídeo de produto — respiro',
+  objetivo:'Respiração estética no feed. Despertar desejo visual antes de qualquer argumento. Reforçar identidade da marca.',
+  gancho:'Arthur Whisky.',
+  dir:'Vídeo existente do Arthur Whisky sendo servido no copo — cor do líquido, fluxo, luz lateral. Reeditar com o nome da marca sobreposto em tipografia limpa no final do vídeo. Sem argumento, sem copy adicional. Música da playlist da marca. 6 a 12 segundos.',
+  cta:'Sem CTA.',
+  stories:[
+    {n:'S13 · Dom', t:'Sensorial em texto', d:'"Cor de mel. Aroma que chega antes do copo. Uma temperatura que aquece sem queimar." — story só com texto sobre fundo escuro. Sem produto forçado. Cria antecipação.'},
+  ]
+},
+
+16:{
+  cls:'p4', pilar:'Orgulho Nacional', funil:'f1', jornada:'Descoberta', captacao:true,
+  open:true,
+  formato:'Reels com fundador',
+  objetivo:'A definir — direcionamento, roteiro e referências serão entregues em 08/06.',
+  gancho:'A definir.',
+  dir:'',
+  cta:'A definir.',
+  stories:[
+    {n:'S1 · Seg', t:'A definir com o roteiro', d:'Stories complementares definidos junto ao direcionamento do Reels em 08/06.'},
+  ]
+},
+
+18:{
+  cls:'p3', pilar:'Momentos que Pedem Arthur', funil:'f3', jornada:'Experiência', captacao:false,
+  formato:'Carrossel — 4 slides',
+  objetivo:'Desconstruir o hábito de guardar a garrafa para uma ocasião especial. Criar rituais de consumo cotidianos. Reduzir o preciosismo que impede a recompra.',
+  gancho:'Você tem uma garrafa boa em casa guardada pra uma ocasião especial que não vem.',
+  dir:'Carrossel com tom cúmplice e levemente bem-humorado. Slide 1: todo brasileiro tem esse hábito. Recebe uma boa garrafa e guarda. Para quando vier visita. Para quando houver motivo à altura. Slide 2: enquanto isso, o produto fica parado. O tempo vai passando. Slide 3: a ocasião especial não vem. Ela é criada. Slide 4: o Arthur Whisky foi feito para ser aberto, não para esperar.',
+  cta:'"Qual é a ocasião que você está esperando? Essa é ela."',
+  stories:[
+    {n:'S2 · Qua', t:'Poll do preciosismo', d:'"Você tem um Arthur Whisky guardado em casa esperando a hora certa?" (sim / não, já abri tudo) — coleta dado real e gera identificação.'},
+    {n:'S3 · Qui', t:'Resposta com conteúdo', d:'Usa o resultado do poll para aprofundar o argumento: por que o brasileiro guarda o whisky e o que acontece com o produto quando fica muito tempo parado. Educativo, não moralista.'},
+    {n:'S4 · Qui', t:'Ritual de quinta', d:'"A quinta-feira também merece." — imagem do copo servido, copy curta. Sem apelo de compra. Só o convite ao consumo.'},
+    {n:'S5 · Sex', t:'CTA semanal', d:'"Fim de semana. O seu Arthur Whisky merece sair da prateleira." — link de compra.'},
+  ]
+},
+
+20:{
+  cls:'p2', pilar:'Sensorial Brasileiro', funil:'f2', jornada:'Consideração', captacao:true,
+  open:true,
+  formato:'Reels com fundador',
+  objetivo:'A definir — direcionamento, roteiro e referências serão entregues em 08/06.',
+  gancho:'A definir.',
+  dir:'',
+  cta:'A definir.',
+  stories:[
+    {n:'S6 · Sáb', t:'A definir com o roteiro', d:'Stories complementares definidos junto ao direcionamento do Reels em 08/06.'},
+  ]
+},
+
+21:{
+  cls:'pc', pilar:'Comercial', funil:'f4', jornada:'Primeira Compra', captacao:false,
+  formato:'Post estático — oferta',
+  objetivo:'Converter seguidores e leads aquecidos em compradores. Primeiro momento de fundo de funil do mês.',
+  gancho:'Duas garrafas Arthur Whisky. Dois copos exclusivos.',
+  dir:'Arte limpa e sofisticada com as duas garrafas e os dois copos. Composição cuidada, fundo neutro. Sem texto excessivo na arte. O produto fala. A copy é curta e objetiva. Linguagem de valor agregado, não de promoção barata.',
+  cta:'"Na compra de duas garrafas, dois copos exclusivos são seus. Link na bio."',
+  stories:[
+    {n:'S7 · Dom', t:'Chamada direta da oferta', d:'"Duas garrafas Arthur Whisky. Dois copos exclusivos. O link está na bio." — imagem da composição.'},
+  ]
+},
+
+23:{
+  cls:'p1', pilar:'Arte da Destilação', funil:'f2', jornada:'Consideração', captacao:false,
+  formato:'Carrossel — 4 slides',
+  objetivo:'Construir autoridade pelo ângulo humano. O mestre destilador como personagem central, sem citar a destilaria. Reforçar confiança no processo e na escolha.',
+  gancho:'Por trás de cada garrafa, existe alguém que passou a vida inteira aprendendo a fazer isso.',
+  dir:'Carrossel sobre o mestre destilador do Arthur Whisky como figura de autoridade técnica. Slide 1: gancho. Slide 2: o que significa passar anos dedicado a entender barril, cevada, maturação e tempo — sem atalho, sem compromisso com mediocridade. Slide 3: a Jim Murray\'s Whisky Bible é considerada a maior referência mundial em avaliação de whiskies. O mestre destilador do Arthur Whisky tem whiskies avaliados com pontuações acima de 93 pontos nessa publicação, entre os mais altos já registrados para destilados brasileiros. Isso não é detalhe — é a autoridade de quem faz o Arthur Whisky. Slide 4: "Quando você abre um Arthur Whisky, você sente a diferença."\n\nDirecionamento adicional: explorar a reputação do mestre destilador na Jim Murray\'s Whisky Bible como argumento de qualidade técnica — não citar o nome da destilaria diretamente, mas sim a figura do profissional e sua pontuação.',
+  cta:'"Feito por quem entende. Conheça na bio."',
+  stories:[
+    {n:'S1 · Ter', t:'O que é a Jim Murray\'s Whisky Bible', d:'Explica brevemente o que é a publicação para quem não conhece: a maior referência mundial em avaliação de whiskies, publicada anualmente, avalia centenas de rótulos do mundo inteiro. Contextualiza antes de trazer o dado.'},
+    {n:'S2 · Ter', t:'A pontuação como argumento', d:'O mestre destilador do Arthur Whisky tem rótulos com pontuações acima de 93 pontos nessa publicação. Para referência: a maioria dos whiskies escoceses que você conhece fica entre 80 e 88. Coloca o dado em perspectiva real.'},
+    {n:'S3 · Qua', t:'O que o mestre destilador escolheu para o Arthur Whisky', d:'Fala sobre as escolhas técnicas específicas do processo: o tipo de barril, o tratamento da cevada, o teor alcoólico de 43% e a ausência de queimação excessiva. Conecta autoridade do profissional com o que está no copo.'},
+    {n:'S4 · Qua', t:'Caixa de perguntas', d:'"O que você gostaria de saber sobre como o Arthur Whisky é feito?" — coleta dúvidas reais do público para usar em futuros conteúdos.'},
+  ]
+},
+
+25:{
+  cls:'p2', pilar:'Sensorial Brasileiro', funil:'f2', jornada:'Consideração', captacao:true,
+  formato:'Reels — coquetelaria',
+  objetivo:'Baixar a barreira de quem não bebe whisky puro. Ampliar as ocasiões de consumo. Alto potencial de salvamento e compartilhamento.',
+  gancho:'O melhor drink merece o melhor whisky.',
+  dir:'Arthur Sour filmado na cozinha ou no bar parceiro. Luz natural, sem produção excessiva. Cada passo em close: Arthur Whisky, suco de limão taiti, mel. Foco no resultado visual do drink — cor, textura, gelo. 30 a 45 segundos. Sem citar teor alcoólico.',
+  cta:'"Salva essa receita. Você vai precisar no fim de semana."',
+  stories:[
+    {n:'S5 · Qui', t:'Receita em steps', d:'Story sequencial com a receita do Arthur Sour passo a passo. Cada ingrediente em um story. Formato direto e visual. Sem texto longo.'},
+    {n:'S6 · Qui', t:'Por que o whisky no drink', d:'Vai além da receita: explica o que o perfil sensorial do Arthur Whisky — sem a queimação excessiva — faz de diferente num drink. O destilado certo muda o resultado final. Educativo e prático.'},
+    {n:'S7 · Sex', t:'Poll drink vs puro', d:'"Como você prefere o Arthur Whisky?" (puro com gelo / no drink / os dois têm hora certa) — dado real de consumo.'},
+    {n:'S8 · Sex', t:'CTA de fim de semana', d:'"Sábado chegando. A receita está salva. O Arthur Whisky está na bio." — link de compra.'},
+  ]
+},
+
+27:{
+  cls:'p5', pilar:'Comunidade Arthur', funil:'f5', jornada:'Recompra e Recomendação', captacao:false,
+  formato:'Post estático — depoimento real',
+  objetivo:'Gerar prova social genuína. Humanizar a marca. Fortalecer pertencimento e incentivar novos UGCs de forma orgânica.',
+  gancho:'Quem provou o Arthur Whisky, sabe.',
+  dir:'Depoimento real de cliente fiel. Layout clean com a frase do cliente em destaque. Nome e cidade. Pode vir acompanhado de foto do produto ou do próprio cliente com a garrafa. O cliente é o hero do post, não a marca. Solicitar depoimentos de clientes fiéis com antecedência.',
+  cta:'"Você também faz parte? Marca a gente no seu próximo copo."',
+  stories:[
+    {n:'S9 · Sáb', t:'Repost do cliente com contexto', d:'Compartilha o depoimento nos stories com uma linha de contexto da marca: quem é essa pessoa, de onde é, quantas vezes já comprou. Humaniza sem expor.'},
+    {n:'S10 · Sáb', t:'O que faz alguém voltar', d:'Conteúdo reflexivo: fala sobre o que faz um cliente recomprar sem precisar de promoção ou lembrete. É o produto. É a experiência. É saber o que está tomando. Tom de marca, não de vendedor.'},
+    {n:'S11 · Dom', t:'Enquete de fidelidade', d:'"Você já comprou Arthur Whisky mais de uma vez?" (sim, sou fiel / foi a primeira / ainda não provei mas quero) — dado real e ativação de leads frios.'},
+    {n:'S12 · Dom', t:'CTA de comunidade', d:'"Quer aparecer aqui? Manda sua foto com Arthur Whisky."'},
+  ]
+},
+
+28:{
+  cls:'pc', pilar:'Comercial', funil:'f4', jornada:'Primeira Compra', captacao:false,
+  formato:'Post estático — oferta',
+  objetivo:'Segundo momento de fundo de funil. Converter quem ainda estava em consideração antes do fechamento do mês.',
+  gancho:'Duas garrafas Arthur Whisky. Dois copos e um porta-copos exclusivos.',
+  dir:'Arte com o kit completo em composição sofisticada. Duas garrafas, dois copos exclusivos, porta-copos da marca. Fundo neutro, luz limpa. Sem texto excessivo. A composição visual vende — a copy é curta e objetiva. Variação visual da oferta do dia 21.',
+  cta:'"O kit está disponível por tempo limitado. Link na bio."',
+  stories:[
+    {n:'S13 · Dom', t:'Última chamada do kit', d:'"Últimas unidades do kit de junho. O link está na bio." — urgência real, tom sem gritaria.'},
+  ]
+},
+
+29:{
+  cls:'p4', pilar:'Orgulho Nacional', funil:'f1', jornada:'Descoberta', captacao:false,
+  formato:'Post estático — sensorial',
+  objetivo:'Fechar o mês com desejo puro. Ativar o paladar visualmente. Criar antecipação para o conteúdo de julho.',
+  gancho:'Você precisa sentir para entender.',
+  dir:'Foto do líquido do Arthur Whisky no copo — cor de mel, luz que atravessa o copo, fundo neutro. Copy sensorial sem argumento técnico. O objetivo é despertar vontade de provar só pela imagem e pelo texto. Composição limpa, elegante.',
+  cta:'"Prove antes de julgar."',
+  stories:[
+    {n:'S1 · Seg', t:'O que você vai sentir no primeiro gole', d:'Descreve em linguagem acessível o perfil sensorial do Arthur Whisky: sem queimação excessiva, aroma encorpado, temperatura que aquece. Não usa jargão técnico. Usa linguagem de quem está descrevendo uma experiência boa para um amigo.'},
+    {n:'S2 · Seg', t:'43% sem queimação — por quê?', d:'Educativo curto: o teor alcoólico do Arthur Whisky é de 43%, igual a muitos importados premium. A diferença está na destilação. Um destilado bem feito não queima — aquece. Explica o que faz a diferença técnica no resultado sensorial.'},
+    {n:'S3 · Ter', t:'Teaser de julho', d:'"Julho vem com novidade. Fica ligado." — sem revelar. Cria antecipação.'},
+  ]
+},
+
+30:{
+  cls:'p5', pilar:'Comunidade Arthur', funil:'f3', jornada:'Recompra e Recomendação', captacao:true,
+  open:true,
+  formato:'Reels com fundador',
+  objetivo:'A definir — direcionamento, roteiro e referências serão entregues em 08/06.',
+  gancho:'A definir.',
+  dir:'',
+  cta:'A definir.',
+  stories:[
+    {n:'S4 · Ter', t:'A definir com o roteiro', d:'Stories complementares definidos junto ao direcionamento do Reels em 08/06.'},
+    {n:'S5 · Ter', t:'Encerramento de junho', d:'"Junho foi só o começo. Obrigado por fazer parte." — imagem leve da garrafa. Sem CTA de venda. Só afeto.'},
+  ]
+},
+
+};
+
+const grid = document.getElementById('grid');
+let dragSrc = null;
+
+function buildCell(d) {
+  const p = POSTS[d];
+  const dow = (d - 1) % 7;
+  const isWe = dow === 5 || dow === 6;
+  const isPast = d < 10;
+
+  const cell = document.createElement('div');
+  cell.className = 'cc' + (p ? ' hp' : '') + (isWe ? ' we' : '') + (isPast ? ' past' : '');
+  cell.dataset.day = d;
+
+  const dn = document.createElement('div');
+  dn.className = 'dn';
+  dn.textContent = d;
+  if (isPast) {
+    const lbl = document.createElement('span');
+    lbl.className = 'past-label';
+    lbl.textContent = ' · já publicado';
+    dn.appendChild(lbl);
+  }
+  cell.appendChild(dn);
+
+  if (p && !isPast) renderPost(cell, p);
+
+  if (!isPast) {
+    cell.addEventListener('dragover', e => { e.preventDefault(); cell.classList.add('drag-over'); });
+    cell.addEventListener('dragleave', () => cell.classList.remove('drag-over'));
+    cell.addEventListener('drop', e => {
+      e.preventDefault();
+      cell.classList.remove('drag-over');
+      if (!dragSrc || dragSrc === d) return;
+      const srcPost = POSTS[dragSrc];
+      const dstPost = POSTS[d] || null;
+      if (dstPost) POSTS[dragSrc] = dstPost; else delete POSTS[dragSrc];
+      POSTS[d] = srcPost;
+      refreshCell(dragSrc);
+      refreshCell(d);
+      dragSrc = null;
+    });
+  }
+  return cell;
+}
+
+function renderPost(cell, p) {
+  cell.querySelectorAll('.pp,.sp').forEach(el => el.remove());
+  if (!p) return;
+
+  const btn = document.createElement('button');
+  btn.className = 'pp ' + p.cls;
+  btn.setAttribute('draggable', 'true');
+  const label = p.open ? '📹 Reels com fundador' : (p.gancho.length > 46 ? p.gancho.substring(0,44)+'…' : p.gancho);
+  btn.textContent = label;
+
+  const dot = document.createElement('span');
+  dot.className = 'fdot ' + p.funil + '-dot';
+  btn.appendChild(dot);
+
+  btn.addEventListener('dragstart', () => { dragSrc = parseInt(cell.dataset.day); cell.classList.add('dragging-source'); });
+  btn.addEventListener('dragend', () => cell.classList.remove('dragging-source'));
+  btn.addEventListener('click', () => openM(p));
+  cell.appendChild(btn);
+
+  if (p.stories) {
+    p.stories.forEach(s => {
+      if (!s.t || s.t.startsWith('A definir')) return;
+      const sb = document.createElement('button');
+      sb.className = 'sp';
+      sb.textContent = s.t;
+      sb.addEventListener('click', e => { e.stopPropagation(); openM(p, s); });
+      cell.appendChild(sb);
+    });
+  }
+}
+
+function refreshCell(d) {
+  const ex = grid.querySelector(`[data-day="${d}"]`);
+  if (ex) grid.replaceChild(buildCell(d), ex);
+}
+
+for (let d = 1; d <= 30; d++) {
+  if (d === 15) {
+    const div = document.createElement('div');
+    div.className = 'quinzena-divider';
+    div.innerHTML = '🎥 <em>2ª Quinzena</em> — novas captações sugeridas a partir daqui · direcionamento e roteiros dos Reels entregues em <em>08/06</em>';
+    grid.appendChild(div);
+  }
+  grid.appendChild(buildCell(d));
+}
+
+const funilMap = {
+  f1:['1 · Aquisição / Descoberta','mb-f1'],
+  f2:['2 · Ativação / Primeiro contato','mb-f2'],
+  f3:['3 · Retenção / Relacionamento','mb-f3'],
+  f4:['4 · Receita / Conversão','mb-f4'],
+  f5:['5 · Recomendação / Advocacy','mb-f5'],
+};
+
+function edField(cls, value, obj, key, multiline) {
+  const d = document.createElement('div');
+  d.className = cls;
+  d.contentEditable = 'true';
+  d.spellcheck = false;
+  d.style.outline = 'none';
+  d.style.cursor = 'text';
+  d.style.whiteSpace = multiline ? 'pre-wrap' : 'normal';
+  d.innerHTML = (value || '').replace(/<br\s*\/?>/gi, '\n');
+  d.addEventListener('input', () => {
+    if (obj && key !== undefined) {
+      obj[key] = d.innerText;
+      if (key === 'gancho' && !obj.open) {
+        const day = Object.keys(POSTS).find(d2 => POSTS[d2] === obj);
+        if (day) refreshCell(parseInt(day));
+      }
+    }
+  });
+  d.addEventListener('focus', () => d.style.boxShadow = '0 0 0 2px var(--gold)');
+  d.addEventListener('blur',  () => d.style.boxShadow = 'none');
+  return d;
+}
+
+function edLabel(text) {
+  const d = document.createElement('div');
+  d.className = 'mst';
+  d.textContent = text;
+  return d;
+}
+
+function openM(p, storyFocus) {
+  const [fl, fc] = funilMap[p.funil];
+
+  const mp = document.getElementById('mp');
+  mp.textContent = '';
+  const mpEdit = edField('', p.pilar, p, 'pilar', false);
+  mpEdit.style.cssText = 'font-size:9.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--gold2);display:inline-block;min-width:60px;border-radius:3px;padding:1px 3px;';
+  mp.appendChild(mpEdit);
+
+  const mt = document.getElementById('mt');
+  mt.textContent = '';
+  const mtVal = p.open ? 'Reels com Fundador' : p.gancho;
+  const mtEdit = edField('', mtVal, p.open ? null : p, p.open ? null : 'gancho', false);
+  mtEdit.style.cssText = "font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:#fff;line-height:1.25;display:block;border-radius:4px;padding:2px 4px;";
+  mt.appendChild(mtEdit);
+
+  document.getElementById('mb').innerHTML = `
+    <span class="mb mb-pilar">${p.pilar}</span>
+    <span class="mb ${fc}">${fl}</span>
+    <span class="mb mb-j">Jornada: ${p.jornada}</span>
+    ${p.open ? '<span class="mb mb-open">📋 Direcionamento em 08/06</span>'
+      : p.captacao ? '<span class="mb mb-cap">📹 Requer captação</span>'
+      : '<span class="mb mb-atv">📷 Ativos existentes</span>'}
+  `;
+
+  const body = document.getElementById('mbody');
+  body.innerHTML = '';
+  const frag = document.createDocumentFragment();
+
+  if (p.open) {
+    frag.appendChild(edLabel('Formato'));
+    frag.appendChild(edField('mfmt', p.formato, p, 'formato', false));
+    frag.appendChild(edLabel('Pilar'));
+    frag.appendChild(edField('mfmt', p.pilar, p, 'pilar', false));
+    frag.appendChild(edLabel('Etapa do funil'));
+    frag.appendChild(edField('mfmt', fl, null, null, false));
+    frag.appendChild(edLabel('Jornada'));
+    frag.appendChild(edField('mfmt', p.jornada, p, 'jornada', false));
+    frag.appendChild(edLabel('Status'));
+    const notice = document.createElement('div');
+    notice.className = 'mopen-notice';
+    notice.innerHTML = '📋 Direcionamento completo, roteiro e referências para este Reels serão entregues na <strong>segunda-feira, dia 08 de junho</strong>. Objetivo, gancho, legenda e CTA definidos após a entrega do direcional estratégico.';
+    frag.appendChild(notice);
+  } else {
+    frag.appendChild(edLabel('Formato'));
+    frag.appendChild(edField('mfmt', p.formato, p, 'formato', false));
+    frag.appendChild(edLabel('Objetivo do post'));
+    frag.appendChild(edField('mobj', p.objetivo, p, 'objetivo', true));
+    frag.appendChild(edLabel('Gancho / Tema'));
+    frag.appendChild(edField('mgancho', p.gancho, p, 'gancho', false));
+    frag.appendChild(edLabel('Direcionamento para desenvolvimento do conteúdo pela designer'));
+    frag.appendChild(edField('mdir', p.dir, p, 'dir', true));
+    frag.appendChild(edLabel('CTA'));
+    frag.appendChild(edField('mcta', p.cta, p, 'cta', false));
+  }
+
+  const validStories = (p.stories || []).filter(s => s.t && !s.t.startsWith('A definir'));
+  if (!p.open && validStories.length) {
+    frag.appendChild(edLabel(`Stories do dia (${validStories.length})`));
+    const ul = document.createElement('ul');
+    ul.className = 'slist';
+    validStories.forEach(s => {
+      const li = document.createElement('li');
+      if (storyFocus && storyFocus.n === s.n) li.style.background = 'var(--gold-pale)';
+      const sn = document.createElement('span');
+      sn.className = 'sn';
+      sn.textContent = s.n;
+      li.appendChild(sn);
+      const stEl = edField('st', s.t, s, 't', false);
+      stEl.style.display = 'block';
+      li.appendChild(stEl);
+      const sdEl = edField('sd', s.d, s, 'd', true);
+      li.appendChild(sdEl);
+      ul.appendChild(li);
+    });
+    frag.appendChild(ul);
+  }
+
+  const addBtn = document.createElement('button');
+  addBtn.textContent = '+ Adicionar story';
+  addBtn.style.cssText = 'margin-top:8px;font-size:10px;font-weight:500;color:var(--gold-muted);background:transparent;border:1px dashed var(--gold);border-radius:5px;padding:5px 12px;cursor:pointer;letter-spacing:.04em;';
+  addBtn.onclick = () => {
+    const newStory = { n: `S${(p.stories||[]).length+1} · novo`, t: 'Título do story', d: 'Descrição do story' };
+    if (!p.stories) p.stories = [];
+    p.stories.push(newStory);
+    openM(p);
+  };
+  frag.appendChild(addBtn);
+
+  const hint = document.createElement('p');
+  hint.style.cssText = 'font-size:9px;color:rgba(30,24,18,.3);margin-top:1rem;text-align:center;letter-spacing:.04em;';
+  hint.textContent = 'Clique em qualquer campo para editar. As alterações são salvas automaticamente.';
+  frag.appendChild(hint);
+
+  body.appendChild(frag);
+  document.getElementById('ov').classList.add('open');
+}
+
+function closeM(e) {
+  if (!e || e.target === document.getElementById('ov'))
+    document.getElementById('ov').classList.remove('open');
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') document.getElementById('ov').classList.remove('open'); });
+</script>
+</body></html>
