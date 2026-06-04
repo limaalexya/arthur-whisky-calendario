@@ -188,6 +188,7 @@ footer em{color:var(--gold2);font-style:normal;}
 </div>
 
 <script>
+// __POSTS_START__
 const POSTS = {
 
 10:{
@@ -386,22 +387,68 @@ const POSTS = {
 },
 
 };
+// __POSTS_END__
 
-// ── localStorage persistence ──────────────────────────────────
-const STORAGE_KEY = 'arthur-whisky-posts-v1';
+// ── persistência ─────────────────────────────────────────────
+const STORAGE_KEY = 'arthur-whisky-v2';
+
+// Carrega do localStorage ao abrir
 (function loadSaved() {
   try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (!saved) return;
-    const data = JSON.parse(saved);
-    Object.keys(data).forEach(d => {
-      if (POSTS[d]) Object.assign(POSTS[d], data[d]);
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const saved = JSON.parse(raw);
+    Object.keys(saved).forEach(k => {
+      if (POSTS[k]) {
+        const s = saved[k];
+        // copia campo a campo para não perder referências
+        ['formato','objetivo','gancho','dir','cta','pilar','jornada'].forEach(f => {
+          if (s[f] !== undefined) POSTS[k][f] = s[f];
+        });
+        if (s.stories) POSTS[k].stories = s.stories;
+      }
     });
-  } catch(e) {}
+  } catch(e) { console.warn('loadSaved error', e); }
 })();
 
 function saveAll() {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(POSTS)); } catch(e) {}
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(POSTS));
+    showToast('✓ Salvo automaticamente');
+  } catch(e) { console.warn('saveAll error', e); }
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function exportHTML() {
+  fetch(location.href.split('?')[0])
+    .then(r => r.text())
+    .then(src => {
+      const postsJson = 'const POSTS = ' + JSON.stringify(POSTS, null, 2) + ';';
+      const updated = src.replace(
+        /\/\/ __POSTS_START__\s*const POSTS = \{[\s\S]*?\};[\s\r\n]*\/\/ __POSTS_END__/,
+        '// __POSTS_START__\n' + postsJson + '\n// __POSTS_END__'
+      );
+      if (!updated.includes('__POSTS_START__')) {
+        showToast('⚠️ Erro ao gerar arquivo — tente novamente');
+        return;
+      }
+      const blob = new Blob([updated], {type: 'text/html;charset=utf-8'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'arthur_whisky_calendario_junho_2026.html';
+      a.click();
+      URL.revokeObjectURL(a.href);
+      showToast('✓ Arquivo baixado com todos os ajustes!');
+    })
+    .catch(() => showToast('⚠️ Não foi possível baixar — use no GitHub Pages'));
 }
 
 const grid = document.getElementById('grid');
@@ -640,23 +687,5 @@ function closeM(e) {
 }
 document.addEventListener('keydown', e => { if(e.key==='Escape') document.getElementById('ov').classList.remove('open'); });
 
-function exportHTML() {
-  // Pega o HTML atual da página
-  const src = document.documentElement.outerHTML;
-  // Substitui o bloco POSTS pelo estado atual (com todos os ajustes)
-  const postsStr = 'const POSTS = ' + JSON.stringify(POSTS, null, 2) + ';';
-  // Regex para encontrar e substituir o bloco POSTS original
-  const updated = src.replace(/const POSTS = \{[\s\S]*?\n\};/, postsStr);
-  const blob = new Blob([updated], {type: 'text/html;charset=utf-8'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'arthur_whisky_calendario_junho_2026.html';
-  a.click();
-  URL.revokeObjectURL(a.href);
-  // Toast
-  const t = document.getElementById('toast');
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 3000);
-}
 </script>
 </body></html>
