@@ -375,6 +375,23 @@ const POSTS = {
 
 };
 
+// ── localStorage persistence ──────────────────────────────────
+const STORAGE_KEY = 'arthur-whisky-posts-v1';
+(function loadSaved() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) return;
+    const data = JSON.parse(saved);
+    Object.keys(data).forEach(d => {
+      if (POSTS[d]) Object.assign(POSTS[d], data[d]);
+    });
+  } catch(e) {}
+})();
+
+function saveAll() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(POSTS)); } catch(e) {}
+}
+
 const grid = document.getElementById('grid');
 let dragSrc = null;
 
@@ -412,6 +429,7 @@ function buildCell(d) {
       const dstPost = POSTS[d] || null;
       if (dstPost) POSTS[dragSrc] = dstPost; else delete POSTS[dragSrc];
       POSTS[d] = srcPost;
+      saveAll();
       refreshCell(dragSrc);
       refreshCell(d);
       dragSrc = null;
@@ -486,6 +504,7 @@ function edField(cls, value, obj, key, multiline) {
   d.addEventListener('input', () => {
     if (obj && key !== undefined) {
       obj[key] = d.innerText;
+      saveAll();
       if (key === 'gancho' && !obj.open) {
         const day = Object.keys(POSTS).find(d2 => POSTS[d2] === obj);
         if (day) refreshCell(parseInt(day));
@@ -589,6 +608,7 @@ function openM(p, storyFocus) {
     const newStory = { n: `S${(p.stories||[]).length+1} · novo`, t: 'Título do story', d: 'Descrição do story' };
     if (!p.stories) p.stories = [];
     p.stories.push(newStory);
+    saveAll();
     openM(p);
   };
   frag.appendChild(addBtn);
