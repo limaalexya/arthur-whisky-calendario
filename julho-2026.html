@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arthur Whisky — Calendário Editorial Julho 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#0F0C08; --ink2:#1E1812; --ink3:#2E2820;
+  --cream:#F5EFE4; --cream2:#EDE5D6;
+  --gold:#B8860B; --gold2:#D4A017; --gold-pale:#FBF3DC; --gold-muted:#7A5C00;
+  --p1:#9B5E1A; --p1p:#FDF3E3;
+  --p2:#1A4A6B; --p2p:#E6F2FA;
+  --p3:#1E4D2E; --p3p:#E8F5EC;
+  --p4:#6B1A3A; --p4p:#F9E8EF;
+  --p5:#2E1A6B; --p5p:#EEE8F9;
+  --pr:#3A3530; --prp:#EDEBE6;
+  --pc:#5C1A1A; --pcp:#F9E8E8;
+  --f1:#C0580A; --f2:#1A6BB5; --f3:#1A7A5C; --f4:#7A1A6B; --f5:#4A6B1A;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);}
+
+header{background:var(--ink);padding:3.5rem 2rem 3rem;text-align:center;position:relative;overflow:hidden;}
+header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 20% 50%,rgba(184,134,11,.16) 0%,transparent 70%),radial-gradient(ellipse 40% 60% at 80% 30%,rgba(184,134,11,.09) 0%,transparent 70%);}
+header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.hi{position:relative;z-index:1;}
+.he{font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--gold2);margin-bottom:1rem;}
+header h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,3.8rem);font-weight:700;color:#fff;line-height:1.05;margin-bottom:.4rem;}
+header h1 em{color:var(--gold2);font-style:normal;}
+.hs{font-size:13px;color:rgba(255,255,255,.4);font-weight:300;letter-spacing:.08em;}
+.hl{width:36px;height:1px;background:var(--gold);margin:1.5rem auto 0;}
+
+.legend{background:var(--ink2);padding:.85rem 2rem;display:flex;flex-wrap:wrap;gap:.6rem 1.3rem;justify-content:center;border-bottom:1px solid rgba(255,255,255,.05);}
+.lsep{width:1px;height:14px;background:rgba(255,255,255,.1);align-self:center;}
+.li{display:flex;align-items:center;gap:5px;font-size:10px;color:rgba(255,255,255,.52);}
+.ld{width:8px;height:8px;border-radius:2px;flex-shrink:0;}
+.lf{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.ldash{background:transparent!important;border:1.5px dashed rgba(255,255,255,.35);border-radius:50%;width:9px;height:9px;}
+.ltitle{font-size:9px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.3);align-self:center;}
+
+main{max-width:1320px;margin:0 auto;padding:2rem 1.5rem 5rem;}
+
+.notice-bar{background:var(--ink);border-left:3px solid var(--gold);color:rgba(255,255,255,.75);padding:.75rem 1.25rem;border-radius:0 7px 7px 0;font-size:11px;line-height:1.6;margin:1.5rem 0 .75rem;max-width:780px;}
+.notice-bar em{color:var(--gold2);font-style:normal;font-weight:500;}
+
+.cal-header{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:5px;}
+.cdn{text-align:center;font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--pr);padding:.4rem 0;opacity:.65;}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;}
+
+.quinzena-divider{grid-column:1/-1;background:var(--ink2);color:rgba(255,255,255,.7);padding:.55rem 1.1rem;border-radius:7px;font-size:10px;font-weight:500;letter-spacing:.08em;display:flex;align-items:center;gap:.5rem;margin:.3rem 0;border-left:3px solid var(--gold);}
+.quinzena-divider em{color:var(--gold2);font-style:normal;}
+
+.cc{background:#fff;border:1.5px solid rgba(15,12,8,.08);border-radius:9px;min-height:158px;padding:8px 7px;position:relative;transition:box-shadow .18s,border-color .18s;}
+.cc.empty{background:transparent;border-color:transparent;}
+.cc.we{background:#FAF8F4;}
+.cc.hp:hover{box-shadow:0 4px 22px rgba(15,12,8,.11);}
+.cc.drag-over{border-color:var(--gold);background:var(--gold-pale)!important;box-shadow:0 0 0 2px var(--gold);}
+.cc.dragging-source{opacity:.4;}
+.dn{font-size:11px;font-weight:600;color:var(--ink3);margin-bottom:5px;letter-spacing:.02em;}
+
+.pp{display:block;font-size:9.5px;font-weight:500;padding:4px 22px 4px 7px;border-radius:5px;margin-bottom:3px;line-height:1.35;cursor:grab;border:none;text-align:left;width:100%;position:relative;transition:opacity .15s,transform .15s;user-select:none;}
+.pp:hover{opacity:.82;transform:translateY(-1px);}
+.pp:active{cursor:grabbing;}
+.fdot{position:absolute;top:5px;right:6px;width:7px;height:7px;border-radius:50%;}
+.f1-dot{background:var(--f1);} .f2-dot{background:var(--f2);} .f3-dot{background:var(--f3);} .f4-dot{background:var(--f4);} .f5-dot{background:var(--f5);}
+
+.p1{background:var(--p1p);color:var(--p1);}
+.p2{background:var(--p2p);color:var(--p2);}
+.p3{background:var(--p3p);color:var(--p3);}
+.p4{background:var(--p4p);color:var(--p4);}
+.p5{background:var(--p5p);color:var(--p5);}
+.pr{background:var(--prp);color:var(--pr);}
+.pc{background:var(--pcp);color:var(--pc);}
+
+.sp{display:block;font-size:8.5px;font-weight:400;padding:2px 6px 2px 15px;border-radius:4px;margin-bottom:2px;border:1px dashed rgba(90,80,70,.3);background:transparent;color:rgba(30,24,18,.45);text-align:left;width:100%;cursor:pointer;transition:opacity .15s;position:relative;}
+.sp:hover{opacity:.65;}
+.sp::before{content:'';position:absolute;left:5px;top:50%;transform:translateY(-50%);width:6px;height:6px;border-radius:50%;border:1px dashed rgba(90,80,70,.45);}
+
+.addp{display:flex;align-items:center;justify-content:center;width:100%;height:100%;min-height:60px;background:transparent;border:1.5px dashed rgba(184,134,11,.3);border-radius:6px;color:rgba(184,134,11,.55);font-size:10px;font-weight:500;cursor:pointer;transition:opacity .15s, background .15s;}
+.addp:hover{opacity:.85;background:rgba(184,134,11,.06);}
+
+.npfield{margin-bottom:10px;}
+.nplabel{font-size:9px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(30,24,18,.4);margin-bottom:5px;display:block;}
+.npinput,.npselect,.nptextarea{width:100%;font-family:'DM Sans',sans-serif;font-size:12.5px;color:var(--ink3);padding:8px 10px;border:1px solid rgba(15,12,8,.12);border-radius:6px;background:#fff;}
+.npinput:focus,.npselect:focus,.nptextarea:focus{outline:none;border-color:var(--gold);}
+.nptextarea{resize:vertical;min-height:60px;font-family:inherit;}
+.npgrid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.npsave{width:100%;background:var(--ink);color:#fff;border:none;padding:11px;border-radius:7px;font-size:12px;font-weight:600;letter-spacing:.04em;cursor:pointer;margin-top:6px;transition:opacity .15s;}
+.npsave:hover{opacity:.85;}
+.npdel{width:100%;background:transparent;color:#B03030;border:1px solid rgba(176,48,48,.3);padding:9px;border-radius:7px;font-size:11px;font-weight:500;cursor:pointer;margin-top:8px;transition:background .15s;}
+.npdel:hover{background:rgba(176,48,48,.06);}
+
+.ov{display:none;position:fixed;inset:0;background:rgba(15,12,8,.65);backdrop-filter:blur(5px);z-index:100;align-items:center;justify-content:center;padding:1rem;}
+.ov.open{display:flex;}
+.mo{background:var(--cream);border-radius:14px;max-width:520px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:0 32px 80px rgba(15,12,8,.35);}
+.mh{background:var(--ink);padding:1.5rem 1.5rem 1.25rem;border-radius:14px 14px 0 0;position:relative;}
+.mcl{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.1);border:none;color:#fff;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;}
+.mcl:hover{background:rgba(255,255,255,.2);}
+.mp{font-size:9.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--gold2);margin-bottom:5px;}
+.mt{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:#fff;line-height:1.25;margin-bottom:8px;}
+.mbadges{display:flex;gap:.45rem;flex-wrap:wrap;}
+.mb{padding:3px 9px;border-radius:3px;font-size:9px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;}
+.mb-pilar{background:rgba(255,255,255,.1);color:rgba(255,255,255,.65);}
+.mb-f1{background:rgba(192,88,10,.25);color:#E07030;} .mb-f2{background:rgba(26,107,181,.25);color:#5090D0;}
+.mb-f3{background:rgba(26,122,92,.25);color:#30A078;} .mb-f4{background:rgba(122,26,107,.25);color:#B050A0;}
+.mb-f5{background:rgba(74,107,26,.25);color:#70A030;}
+.mb-j{background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);}
+.mb-cap{background:rgba(184,134,11,.2);color:var(--gold2);}
+.mb-atv{background:rgba(26,138,74,.15);color:#30A060;}
+.mb-open{background:rgba(255,255,255,.08);color:rgba(255,255,255,.4);font-style:italic;}
+.mbody{padding:1.25rem 1.5rem 1.5rem;}
+.mst{font-size:9px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(30,24,18,.32);margin-bottom:6px;margin-top:1.1rem;}
+.mst:first-child{margin-top:0;}
+.mfmt{font-size:12px;font-weight:500;color:var(--ink3);padding:6px 10px;background:rgba(15,12,8,.04);border-radius:6px;}
+.mobj{font-size:12px;color:var(--ink3);line-height:1.58;padding:8px 12px;background:rgba(15,12,8,.04);border-radius:6px;}
+.mdesc{font-size:12.5px;color:rgba(255,255,255,.85);line-height:1.68;background:var(--ink2);padding:12px 14px;border-radius:8px;font-style:italic;}
+.mgancho{font-size:13px;font-weight:600;color:var(--ink);line-height:1.4;padding:10px 14px;background:var(--gold-pale);border-radius:8px;border-left:3px solid var(--gold);}
+.mdir{font-size:12px;color:var(--ink3);line-height:1.68;padding:10px 14px;background:#fff;border-radius:8px;border:1px solid rgba(15,12,8,.08);}
+.mcta{font-size:12px;color:var(--ink3);line-height:1.55;padding:10px 14px;background:var(--gold-pale);border-radius:8px;border-left:3px solid var(--gold);}
+.mref{font-size:11px;color:var(--gold-muted);line-height:1.5;padding:8px 12px;background:rgba(184,134,11,.07);border-radius:6px;border:1px dashed rgba(184,134,11,.3);}
+.mopen-notice{font-size:11.5px;color:var(--gold-muted);line-height:1.65;padding:12px 14px;background:var(--gold-pale);border-radius:8px;border:1px dashed var(--gold);}
+.slist{list-style:none;background:#fff;border-radius:8px;border:1px solid rgba(15,12,8,.07);overflow:hidden;}
+.slist li{padding:9px 12px 9px 28px;border-bottom:1px solid rgba(15,12,8,.05);position:relative;}
+.slist li:last-child{border-bottom:none;}
+.slist li::before{content:'';position:absolute;left:10px;top:13px;width:8px;height:8px;border-radius:50%;border:1.5px dashed rgba(90,80,70,.45);}
+.sn{font-size:9px;font-weight:600;color:var(--gold-muted);letter-spacing:.05em;display:block;margin-bottom:1px;}
+.st{font-size:11px;font-weight:600;color:var(--ink3);display:block;margin-bottom:3px;}
+.sd{font-size:11.5px;color:rgba(30,24,18,.62);line-height:1.58;}
+
+.drag-hint{font-size:9px;color:rgba(30,24,18,.25);text-align:center;margin-top:.75rem;letter-spacing:.04em;}
+
+footer{background:var(--ink);text-align:center;padding:1.5rem;font-size:11px;color:rgba(255,255,255,.22);letter-spacing:.06em;}
+footer em{color:var(--gold2);font-style:normal;}
+
+@media(max-width:768px){
+  .cc{min-height:90px;padding:5px;} .pp{font-size:8.5px;padding:3px 16px 3px 5px;}
+  .sp{font-size:7.5px;} main{padding:1rem .75rem 3rem;} .legend{gap:.5rem 1rem;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hi">
+    <div class="he">Planejamento editorial · Uso interno · ami lab</div>
+    <h1>Arthur <em>Whisky</em></h1>
+    <div class="hs">Calendário de Conteúdo — Julho 2026</div>
+    <div class="hl"></div>
+  </div>
+</header>
+
+<div class="legend">
+  <span class="ltitle">Pilares</span>
+  <div class="li"><div class="ld" style="background:var(--p1)"></div>Arte da Destilação</div>
+  <div class="li"><div class="ld" style="background:var(--p2)"></div>Sensorial Brasileiro</div>
+  <div class="li"><div class="ld" style="background:var(--p3)"></div>Momentos que Pedem Arthur</div>
+  <div class="li"><div class="ld" style="background:var(--p4)"></div>Orgulho Nacional</div>
+  <div class="li"><div class="ld" style="background:var(--p5)"></div>Comunidade Arthur</div>
+  <div class="li"><div class="ld" style="background:var(--pc)"></div>Comercial</div>
+  <div class="li"><div class="ld" style="background:var(--pr)"></div>Respiro</div>
+  <div class="lsep"></div>
+  <span class="ltitle">Funil de Growth</span>
+  <div class="li"><div class="lf" style="background:var(--f1)"></div>1 · Aquisição</div>
+  <div class="li"><div class="lf" style="background:var(--f2)"></div>2 · Ativação</div>
+  <div class="li"><div class="lf" style="background:var(--f3)"></div>3 · Retenção</div>
+  <div class="li"><div class="lf" style="background:var(--f4)"></div>4 · Conversão</div>
+  <div class="li"><div class="lf" style="background:var(--f5)"></div>5 · Recomendação</div>
+  <div class="lsep"></div>
+  <div class="li"><div class="ld ldash"></div>Stories</div>
+</div>
+
+<main>
+  <div class="cal-header">
+    <div class="cdn">Seg</div><div class="cdn">Ter</div><div class="cdn">Qua</div>
+    <div class="cdn">Qui</div><div class="cdn">Sex</div><div class="cdn">Sáb</div><div class="cdn">Dom</div>
+  </div>
+  <div id="grid" class="cal-grid"></div>
+  <p class="drag-hint">💡 Arraste qualquer card para reorganizar o calendário entre os dias disponíveis</p>
+</main>
+
+<footer>Calendário editorial Arthur Whisky — Julho 2026 · <em>ami lab</em> · uso interno</footer>
+
+<div class="ov" id="ov" onclick="closeM(event)">
+  <div class="mo">
+    <div class="mh">
+      <button class="mcl" onclick="closeM()">✕</button>
+      <div class="mp" id="mp"></div>
+      <div class="mt" id="mt"></div>
+      <div class="mbadges" id="mb"></div>
+    </div>
+    <div class="mbody" id="mbody"></div>
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────────────────────────
+// JULHO 2026 — 1º de julho é uma quarta-feira
+// FUNIL DE GROWTH: f1 Aquisição | f2 Ativação | f3 Retenção | f4 Receita/Conversão | f5 Recomendação
+// PILARES: p1 Arte da Destilação | p2 Sensorial Brasileiro | p3 Momentos que Pedem Arthur
+//          p4 Orgulho Nacional | p5 Comunidade Arthur | pc Comercial | pr Respiro
+// captacao: false = ativos existentes | true = requer gravação
+// ref: referência visual de Instagram (uso interno, não aparece na arte final)
+// ─────────────────────────────────────────────────────────────────
+
+const POSTS = {
+
+// ══════════════════════════════════════
+// SEMANA 1 — 1 a 5 jul (quarta a domingo)
+// feed: 2, 3, 5
+// ══════════════════════════════════════
+
+2:{
+  cls:'p2', pilar:'Sensorial Brasileiro', funil:'f1', jornada:'Descoberta', captacao:false,
+  formato:'Vídeo de produto — respiro',
+  objetivo:'Abrir o mês com desejo visual puro. Reforçar identidade da marca antes de qualquer argumento. Alto potencial de salvamento.',
+  gancho:'Arthur Whisky.',
+  dir:'Vídeo existente do Arthur Whisky sendo servido no copo — cor, fluxo, luz lateral. Nome da marca sobreposto em tipografia limpa. Música da playlist da marca. 6 a 12 segundos.',
+  cta:'Sem CTA.',
+  ref:'Referência de composição: @drink818 (ambiente colorido, minimalista, foco total no copo).',
+  stories:[
+    {n:'S1 · Qui', t:'Abertura de mês', d:'"Julho chegou. E o seu Arthur Whisky também." — story simples com imagem de produto, sem CTA de venda. Tom de boas-vindas ao mês.'},
+    {n:'S2 · Qui', t:'Enquete de retomada', d:'"Como você quer terminar a semana?" (com calma / com boa companhia / com um bom copo) — gera dado de comportamento e abre o mês com leveza.'},
+  ]
+},
+
+3:{
+  cls:'p1', pilar:'Arte da Destilação', funil:'f2', jornada:'Consideração', captacao:false,
+  formato:'Carrossel — 4 slides',
+  objetivo:'Educar sobre um diferencial técnico ainda não explorado. Construir autoridade sem jargão e sem citar destilaria.',
+  gancho:'A cevada que vira whisky passa por mais etapas do que você imagina.',
+  dir:'Carrossel sobre o processo da cevada até o destilado. Slide 1: gancho. Slide 2: a maltagem — a cevada germina e depois é seca, processo que define parte do perfil de sabor. Slide 3: a moagem e a fermentação, onde o açúcar da cevada se transforma. Slide 4: "Tudo isso, antes da primeira gota tocar o barril." Fotos de produto disponíveis para ilustrar cada slide.',
+  cta:'"Cada etapa importa. Conheça o resultado na bio."',
+  stories:[
+    {n:'S3 · Sex', t:'Fact da maltagem', d:'Um dado curto sobre o processo de maltagem da cevada — explica de forma simples sem soar técnico demais. Visual limpo, copy em uma linha.'},
+    {n:'S4 · Sex', t:'Pergunta de curiosidade', d:'"Você sabia que antes de virar whisky, a cevada passa por um processo parecido com o de germinar uma semente?" — gera curiosidade e prepara para o carrossel.'},
+    {n:'S5 · Sáb', t:'CTA de fim de semana', d:'"Sábado chegou. O Arthur Whisky está esperando." — link de compra fixado.'},
+  ]
+},
+
+5:{
+  cls:'p3', pilar:'Momentos que Pedem Arthur', funil:'f1', jornada:'Descoberta', captacao:false,
+  formato:'Post estático',
+  objetivo:'Criar identificação com o momento de domingo. Ampliar ocasiões de consumo sem depender de data comercial.',
+  gancho:'Domingo de tarde também é hora de brindar.',
+  dir:'Arte com imagem de ambiente — copo servido, luz de fim de tarde, superfície de madeira. Copy de identificação com o ritmo do fim de semana. Tom intimista, sem glamour. Fotos de produto disponíveis.',
+  cta:'"Cria o seu ritual. O link está na bio."',
+  stories:[
+    {n:'S6 · Dom', t:'Convite ao ritual', d:'"Nem todo brinde precisa de motivo. Esse aqui é só por hoje." — imagem do copo servido, copy curta.'},
+  ]
+},
+
+// ══════════════════════════════════════
+// SEMANA 2 — 6 a 12 jul
+// feed: 7, 9, 10, 12
+// ══════════════════════════════════════
+
+7:{
+  cls:'p4', pilar:'Orgulho Nacional', funil:'f1', jornada:'Descoberta', captacao:false,
+  formato:'Carrossel — 4 slides',
+  objetivo:'Ampliar alcance com argumento de brasilidade. Reforçar a confiança no produto nacional sem confronto direto.',
+  gancho:'O Brasil não pediu permissão para fazer um bom whisky. Só fez.',
+  dir:'Carrossel editorial sem imagem de concorrente. Slide 1: gancho direto. Slide 2: o Brasil tem clima, técnica e dedicação — só faltava quem se atrevesse. Slide 3: o Arthur Whisky nasceu dessa convicção. Slide 4: "Prove antes de julgar." Tom confiante, sem defensividade. Fotos de produto disponíveis.',
+  cta:'"Você só vai entender quando provar. Link na bio."',
+  stories:[
+    {n:'S1 · Ter', t:'Caixa de perguntas', d:'"Você já se surpreendeu com algum produto brasileiro que esperava ser só ok? Me conta aqui."'},
+    {n:'S2 · Ter', t:'Resposta + conexão', d:'Usa uma das respostas para conectar com o Arthur Whisky: "é exatamente essa sensação que queremos te dar."'},
+    {n:'S3 · Qua', t:'CTA direto', d:'"Meio de semana pede uma pausa boa." — link de compra + imagem do produto.'},
+  ]
+},
+
+9:{
+  cls:'p1', pilar:'Arte da Destilação', funil:'f2', jornada:'Consideração', captacao:false,
+  formato:'Carrossel — 4 slides',
+  objetivo:'Aprofundar o argumento técnico sobre maturação. Educar sem jargão e sem citar a destilaria.',
+  gancho:'O tempo é o ingrediente que nenhuma receita consegue acelerar.',
+  dir:'Carrossel sobre o papel do tempo na maturação. Slide 1: gancho. Slide 2: o líquido entra no barril ainda incolor — é o tempo dentro da madeira que cria a cor e o sabor. Slide 3: no clima tropical, esse processo acontece de forma diferente do que em destilarias de clima frio. Slide 4: "O resultado está no copo. E no tempo que ele levou para chegar até ali." Fotos macro de produto disponíveis.',
+  cta:'"O tempo certo, no lugar certo. Conheça na bio."',
+  stories:[
+    {n:'S4 · Qui', t:'Fact do barril', d:'Um dado curto sobre como o barril transfere cor e sabor ao longo do tempo. Visual simples, copy em uma linha.'},
+    {n:'S5 · Qui', t:'Comparação de clima', d:'Explica de forma direta como o clima tropical interfere na velocidade da maturação — sem comparar diretamente com concorrentes nomeados.'},
+    {n:'S6 · Sex', t:'CTA semanal', d:'"Fim de semana chegando. O seu Arthur Whisky está pronto — ele já esperou o tempo certo." — link de compra.'},
+  ]
+},
+
+10:{
+  cls:'p2', pilar:'Sensorial Brasileiro', funil:'f2', jornada:'Consideração', captacao:true,
+  formato:'Reels — coquetelaria',
+  objetivo:'Ampliar ocasiões de consumo. Baixar a barreira de quem não bebe whisky puro. Alto potencial de salvamento e compartilhamento.',
+  gancho:'Um drink simples pode virar o motivo da sua semana.',
+  dir:'Receita de Old Fashioned simplificado: Arthur Whisky, açúcar, angostura, casca de laranja. Filmado na cozinha ou no bar parceiro, luz natural, sem produção excessiva. Cada passo em close. Foco no resultado visual — cor, gelo, casca de laranja sendo torcida sobre o copo. 30 a 45 segundos.',
+  cta:'"Salva essa receita. Ela vai salvar o seu fim de semana."',
+  ref:'Referência de estética: vídeos de preparo da @drinklucia (ingredientes organizados, montagem do drink) e o close de copo em mão da @brothersbond.',
+  stories:[
+    {n:'S7 · Sáb', t:'Receita em steps', d:'Story sequencial: ingrediente 1 → 2 → resultado. Formato receita rápida, direto e visual.'},
+    {n:'S8 · Sáb', t:'Por que o Old Fashioned funciona', d:'Explica de forma simples por que esse drink clássico realça bem o perfil do whisky em vez de mascarar — educativo sem ser técnico.'},
+    {n:'S9 · Dom', t:'Poll de preferência', d:'"Você prefere o whisky puro ou em drink?" (puro / no drink / depende do dia) — dado real de consumo.'},
+  ]
+},
+
+12:{
+  cls:'p5', pilar:'Comunidade Arthur', funil:'f5', jornada:'Recompra e Recomendação', captacao:false,
+  formato:'Post estático — depoimento real',
+  objetivo:'Gerar prova social genuína. Humanizar a marca. Incentivar novos UGCs de forma orgânica.',
+  gancho:'Tem gente que prova uma vez e já vira da casa.',
+  dir:'Depoimento real de cliente fiel. Layout clean com a frase do cliente em destaque, nome e cidade. Pode vir acompanhado de foto do produto. O cliente é o hero do post. Solicitar depoimentos com antecedência.',
+  cta:'"Você também faz parte? Marca a gente no seu próximo copo."',
+  stories:[
+    {n:'S10 · Dom', t:'Repost com afeto', d:'Compartilha o depoimento nos stories com sticker de agradecimento + nome e cidade.'},
+  ]
+},
+
+// ══════════════════════════════════════
+// SEMANA 3 — 13 a 19 jul
+// feed: 14, 16, 17, 19
+// ══════════════════════════════════════
+
+14:{
+  cls:'p3', pilar:'Momentos que Pedem Arthur', funil:'f3', jornada:'Experiência', captacao:false,
+  formato:'Carrossel — 4 slides',
+  objetivo:'Reforçar a filosofia de aproveitar o presente. Criar identificação com quem vive esperando o momento ideal.',
+  gancho:'Você está esperando o quê, exatamente?',
+  dir:'Carrossel com tom reflexivo e direto. Slide 1: gancho. Slide 2: tem gente que guarda a vida inteira esperando o momento perfeito — uma viagem, uma conquista, uma data redonda. Slide 3: e esquece que o momento perfeito é só uma decisão. Slide 4: "O Arthur Whisky está pronto. Você também já está." Fotos de produto disponíveis.',
+  cta:'"Não espera o momento. Cria ele."',
+  stories:[
+    {n:'S1 · Ter', t:'Caixa de perguntas', d:'"O que você está esperando para fazer hoje? Me conta aqui." — gera reflexão e identificação antes do carrossel.'},
+    {n:'S2 · Ter', t:'Resposta com leveza', d:'Usa uma resposta real para conectar com a ideia do carrossel — tom de cumplicidade, não de sermão.'},
+    {n:'S3 · Qua', t:'CTA direto', d:'"Meio de semana também merece um bom motivo." — link de compra.'},
+  ]
+},
+
+16:{
+  cls:'p1', pilar:'Arte da Destilação', funil:'f2', jornada:'Consideração', captacao:false,
+  formato:'Carrossel — 4 slides',
+  objetivo:'Reforçar a autoridade do mestre destilador. Conectar o argumento técnico ao resultado sensorial sem citar a destilaria.',
+  gancho:'Tem gente que passa a vida toda só para acertar uma única coisa.',
+  dir:'Carrossel sobre dedicação técnica, complementando o conteúdo já trabalhado sobre o mestre destilador em junho. Slide 1: gancho. Slide 2: encontrar o ponto exato de equilíbrio entre cevada, barril e tempo não é sorte — é repetição, ajuste, anos de tentativa. Slide 3: o mestre destilador do Arthur Whisky carrega esse tipo de dedicação. Slide 4: "O resultado está no copo. E em cada detalhe que você não vê — mas sente." Fotos de produto disponíveis.',
+  cta:'"Feito por quem entende. Conheça na bio."',
+  stories:[
+    {n:'S4 · Qui', t:'Fact de processo', d:'Um dado curto sobre o cuidado na escolha do barril ou no controle do teor alcoólico. Visual simples, copy em uma linha.'},
+    {n:'S5 · Qui', t:'Pergunta de identificação', d:'"Você tem algo que você só fez bem depois de muita repetição?" — conecta o tema da dedicação com a experiência do público antes de reforçar o carrossel.'},
+    {n:'S6 · Sex', t:'CTA semanal', d:'"Fim de semana chegando. O seu Arthur Whisky está esperando." — link de compra.'},
+  ]
+},
+
+17:{
+  cls:'pc', pilar:'Comercial', funil:'f4', jornada:'Primeira Compra', captacao:false,
+  formato:'Post estático — oferta',
+  objetivo:'Converter seguidores e leads aquecidos em compradores. Momento de fundo de funil do mês.',
+  gancho:'Duas garrafas Arthur Whisky. Dois copos exclusivos.',
+  dir:'Arte limpa e sofisticada com as duas garrafas e os dois copos. Composição cuidada, fundo neutro. Sem texto excessivo na arte.',
+  cta:'"Na compra de duas garrafas, dois copos exclusivos são seus. Link na bio."',
+  stories:[
+    {n:'S7 · Sex', t:'Chamada direta da oferta', d:'"Duas garrafas Arthur Whisky. Dois copos exclusivos. O link está na bio." — imagem da composição.'},
+  ]
+},
+
+19:{
+  cls:'p2', pilar:'Sensorial Brasileiro', funil:'f1', jornada:'Descoberta', captacao:false,
+  formato:'Vídeo de produto — respiro',
+  objetivo:'Despertar desejo puro pela imagem. Reforçar identidade visual da marca. Alto potencial de salvamento.',
+  gancho:'Tem cor que conta história antes de qualquer palavra.',
+  dir:'Foto ou vídeo curto do líquido no copo — cor de mel, luz que atravessa, fundo neutro. Copy sensorial sem argumento técnico. Composição limpa, elegante.',
+  cta:'"Prove antes de julgar."',
+  stories:[
+    {n:'S8 · Dom', t:'Encerramento de semana', d:'"Mais uma semana, mais um bom motivo." — imagem leve, sem CTA de venda.'},
+  ]
+},
+
+// ══════════════════════════════════════
+// SEMANA 4 — 20 a 26 jul
+// feed: 21, 23, 24, 26
+// ══════════════════════════════════════
+
+21:{
+  cls:'p4', pilar:'Orgulho Nacional', funil:'f1', jornada:'Descoberta', captacao:true,
+  open:true,
+  formato:'Reels com fundador',
+  objetivo:'A definir — direcionamento, roteiro e referências serão entregues com antecedência.',
+  gancho:'A definir.',
+  dir:'',
+  cta:'A definir.',
+  stories:[
+    {n:'S1 · Ter', t:'A definir com o roteiro', d:'Stories complementares definidos junto ao direcionamento do Reels.'},
+  ]
+},
+
+23:{
+  cls:'p3', pilar:'Momentos que Pedem Arthur', funil:'f3', jornada:'Experiência', captacao:false,
+  formato:'Carrossel — 4 slides',
+  objetivo:'Trabalhar a frequência de consumo via ritual semanal. Reduzir o preciosismo que impede a recompra.',
+  gancho:'Quinta-feira também é dia de celebrar alguma coisa.',
+  dir:'Carrossel com tom leve. Slide 1: gancho. Slide 2: a semana não precisa terminar para você relaxar. Slide 3: um bom copo no meio da semana também é um jeito de cuidar de si. Slide 4: "Sem motivo especial. Só porque é quinta." Fotos de produto disponíveis.',
+  cta:'"Cria o seu próprio motivo. Link na bio."',
+  stories:[
+    {n:'S2 · Qui', t:'Enquete de meio de semana', d:'"Como está sua semana até agora?" (cansativa / tranquila / poderia estar melhor) — gera engajamento real antes do carrossel.'},
+    {n:'S3 · Qui', t:'Resposta com empatia', d:'Conecta a resposta majoritária com a proposta do carrossel — tom de cumplicidade, sem forçar venda.'},
+    {n:'S4 · Sex', t:'CTA semanal', d:'"Sexta chegou. O seu Arthur Whisky também." — link de compra.'},
+  ]
+},
+
+24:{
+  cls:'p1', pilar:'Arte da Destilação', funil:'f2', jornada:'Consideração', captacao:false,
+  formato:'Carrossel — 4 slides',
+  objetivo:'Fechar o ciclo de conteúdo técnico do mês conectando todos os elementos do processo. Reforçar percepção de cuidado integral.',
+  gancho:'Cevada, barril, tempo e clima. Quatro coisas, um resultado.',
+  dir:'Carrossel-resumo que conecta os temas técnicos trabalhados ao longo do mês (cevada, barril, tempo, clima tropical) em uma narrativa única. Slide 1: gancho. Slide 2-4: cada elemento em uma frase curta e direta, sem repetir o que já foi dito em detalhe — é uma síntese visual. Fecha com: "Tudo isso, antes do primeiro gole." Fotos de produto disponíveis.',
+  cta:'"Agora você sabe o que está no seu copo. Conheça na bio."',
+  stories:[
+    {n:'S5 · Sex', t:'Recapitulação do mês', d:'"Esse mês a gente te contou sobre cevada, barril, tempo e clima. Qual desses te surpreendeu mais?" — enquete simples que fecha o ciclo educativo do mês.'},
+    {n:'S6 · Sex', t:'CTA de fim de semana', d:'"Fim de semana. O Arthur Whisky está esperando." — link de compra.'},
+  ]
+},
+
+26:{
+  cls:'p5', pilar:'Comunidade Arthur', funil:'f5', jornada:'Recompra e Recomendação', captacao:false,
+  formato:'Post estático — depoimento real',
+  objetivo:'Fortalecer pertencimento. Incentivar novos UGCs. Mostrar comunidade real para novos seguidores.',
+  gancho:'Não fomos nós que dissemos isso. Foi quem provou.',
+  dir:'Depoimento real de cliente com foto de produto ou UGC. Layout clean, nome e cidade. O depoimento é o hero do post. Solicitar com antecedência.',
+  cta:'"Quer aparecer aqui? Manda sua foto com Arthur Whisky."',
+  stories:[
+    {n:'S7 · Dom', t:'Enquete de fidelidade', d:'"Você já recomendou o Arthur Whisky para alguém?" (sim, várias vezes / sim, uma vez / ainda não, mas vou) — dado real de advocacy.'},
+  ]
+},
+
+// ══════════════════════════════════════
+// SEMANA 5 — 27 a 31 jul
+// feed: 28, 30, 31
+// ══════════════════════════════════════
+
+28:{
+  cls:'p2', pilar:'Sensorial Brasileiro', funil:'f2', jornada:'Consideração', captacao:true,
+  formato:'Reels — coquetelaria',
+  objetivo:'Fechar o mês com mais uma receita acessível. Ampliar ocasiões de consumo e gerar salvamentos.',
+  gancho:'Três ingredientes separam você de um bom drink de fim de mês.',
+  dir:'Receita de Whisky Sour: Arthur Whisky, suco de limão, clara de ovo (opcional) ou mel. Filmado em ambiente real, luz natural. Cada passo em close, foco no resultado visual — espuma, cor, gelo. 30 a 45 segundos.',
+  cta:'"Salva essa receita pro fim de mês."',
+  stories:[
+    {n:'S1 · Ter', t:'Receita em steps', d:'Story sequencial com o passo a passo do drink. Formato direto e visual.'},
+    {n:'S2 · Ter', t:'Poll de fechamento', d:'"Esse mês você experimentou algum drink novo com Arthur Whisky?" (sim / ainda não, mas vou / prefiro puro) — dado real de consumo.'},
+  ]
+},
+
+30:{
+  cls:'p4', pilar:'Orgulho Nacional', funil:'f1', jornada:'Descoberta', captacao:false,
+  formato:'Post estático',
+  objetivo:'Fechar o mês reforçando o posicionamento central da marca. Criar antecipação para agosto.',
+  gancho:'Prove antes de julgar. Sempre foi essa a proposta.',
+  dir:'Arte limpa com a garrafa em destaque, fundo escuro, luz lateral. Copy que resume a essência da marca sem soar repetitivo — fecha o mês reafirmando o convite central. Fotos de produto disponíveis.',
+  cta:'"O link está na bio. O resto você descobre no primeiro gole."',
+  stories:[
+    {n:'S3 · Qui', t:'Teaser de agosto', d:'"Agosto vem com novidade. Fica ligado." — sem revelar o que é.'},
+  ]
+},
+
+31:{
+  cls:'p5', pilar:'Comunidade Arthur', funil:'f3', jornada:'Recompra e Recomendação', captacao:true,
+  open:true,
+  formato:'Reels com fundador',
+  objetivo:'A definir — direcionamento, roteiro e referências serão entregues com antecedência.',
+  gancho:'A definir.',
+  dir:'',
+  cta:'A definir.',
+  stories:[
+    {n:'S4 · Sex', t:'A definir com o roteiro', d:'Stories complementares definidos junto ao direcionamento do Reels.'},
+    {n:'S5 · Sex', t:'Encerramento de mês', d:'"Julho foi bom. Agosto vem melhor." — imagem leve da garrafa, sem CTA de venda. Só afeto.'},
+  ]
+},
+
+}; // end POSTS
+
+// ─────────────────────────────────────────────────────────────────
+const grid = document.getElementById('grid');
+let dragSrc = null;
+
+function buildCell(d) {
+  const p = POSTS[d];
+  // julho 2026 começa quarta-feira: offset de 2 (seg=0, ter=1, qua=2...)
+  const offset = 2;
+  const dow = (d - 1 + offset) % 7;
+  const isWe = dow === 5 || dow === 6;
+
+  const cell = document.createElement('div');
+  cell.className = 'cc' + (p ? ' hp' : '') + (isWe ? ' we' : '');
+  cell.dataset.day = d;
+
+  const dn = document.createElement('div');
+  dn.className = 'dn';
+  dn.textContent = d;
+  cell.appendChild(dn);
+
+  if (p) {
+    renderPost(cell, p);
+  } else {
+    const addBtn = document.createElement('button');
+    addBtn.className = 'addp';
+    addBtn.textContent = '+ Adicionar post';
+    addBtn.addEventListener('click', e => { e.stopPropagation(); openNewPostModal(d); });
+    cell.appendChild(addBtn);
+  }
+
+  cell.addEventListener('dragover', e => { e.preventDefault(); cell.classList.add('drag-over'); });
+  cell.addEventListener('dragleave', () => cell.classList.remove('drag-over'));
+  cell.addEventListener('drop', e => {
+    e.preventDefault();
+    cell.classList.remove('drag-over');
+    if (!dragSrc || dragSrc === d) return;
+    const srcPost = POSTS[dragSrc];
+    const dstPost = POSTS[d] || null;
+    if (dstPost) POSTS[dragSrc] = dstPost; else delete POSTS[dragSrc];
+    POSTS[d] = srcPost;
+    refreshCell(dragSrc);
+    refreshCell(d);
+    dragSrc = null;
+  });
+
+  return cell;
+}
+
+function renderPost(cell, p) {
+  cell.querySelectorAll('.pp,.sp').forEach(el => el.remove());
+  if (!p) return;
+
+  const btn = document.createElement('button');
+  btn.className = 'pp ' + p.cls;
+  btn.setAttribute('draggable', 'true');
+  const label = p.open ? '📹 Reels com fundador' : (p.gancho.length > 46 ? p.gancho.substring(0,44)+'…' : p.gancho);
+  btn.textContent = label;
+
+  const dot = document.createElement('span');
+  dot.className = 'fdot ' + p.funil + '-dot';
+  btn.appendChild(dot);
+
+  btn.addEventListener('dragstart', () => { dragSrc = parseInt(cell.dataset.day); cell.classList.add('dragging-source'); });
+  btn.addEventListener('dragend', () => cell.classList.remove('dragging-source'));
+  btn.addEventListener('click', () => openM(p, null, parseInt(cell.dataset.day)));
+  cell.appendChild(btn);
+
+  if (p.stories) {
+    p.stories.forEach(s => {
+      if (!s.t || s.t.startsWith('A definir')) return;
+      const sb = document.createElement('button');
+      sb.className = 'sp';
+      sb.textContent = s.t;
+      sb.addEventListener('click', e => { e.stopPropagation(); openM(p, s, parseInt(cell.dataset.day)); });
+      cell.appendChild(sb);
+    });
+  }
+}
+
+function refreshCell(d) {
+  const ex = grid.querySelector(`[data-day="${d}"]`);
+  if (ex) grid.replaceChild(buildCell(d), ex);
+}
+
+for (let d = 1; d <= 31; d++) {
+  grid.appendChild(buildCell(d));
+}
+
+// ─────────────────────────────────────────────────────────────────
+const funilMap = {
+  f1:['1 · Aquisição / Descoberta','mb-f1'],
+  f2:['2 · Ativação / Primeiro contato','mb-f2'],
+  f3:['3 · Retenção / Relacionamento','mb-f3'],
+  f4:['4 · Receita / Conversão','mb-f4'],
+  f5:['5 · Recomendação / Advocacy','mb-f5'],
+};
+
+function openM(p, storyFocus, day) {
+  const [fl, fc] = funilMap[p.funil];
+  document.getElementById('mp').textContent = p.pilar;
+  document.getElementById('mt').textContent = p.open ? 'Reels com Fundador' : p.gancho;
+  document.getElementById('mb').innerHTML = `
+    <span class="mb mb-pilar">${p.pilar}</span>
+    <span class="mb ${fc}">${fl}</span>
+    <span class="mb mb-j">Jornada: ${p.jornada}</span>
+    ${p.open ? '<span class="mb mb-open">📋 Direcionamento a confirmar</span>'
+      : p.captacao ? '<span class="mb mb-cap">📹 Requer captação</span>'
+      : '<span class="mb mb-atv">📷 Ativos existentes</span>'}
+  `;
+
+  let html = '';
+
+  if (p.open) {
+    html = `
+      <div class="mst">Formato</div><div class="mfmt">${p.formato}</div>
+      <div class="mst">Pilar</div><div class="mfmt">${p.pilar}</div>
+      <div class="mst">Etapa do funil</div><div class="mfmt">${fl}</div>
+      <div class="mst">Jornada</div><div class="mfmt">${p.jornada}</div>
+      <div class="mst">Status</div>
+      <div class="mopen-notice">📋 Direcionamento completo, roteiro e referências para este Reels serão entregues com antecedência, seguindo o mesmo fluxo de aprovação de 15 dias já estabelecido.</div>`;
+  } else {
+    html = `
+      <div class="mst">Formato</div><div class="mfmt">${p.formato}</div>
+      <div class="mst">Objetivo do post</div><div class="mobj">${p.objetivo}</div>
+      <div class="mst">Gancho / Tema</div><div class="mgancho">${p.gancho}</div>
+      <div class="mst">Direcionamento para desenvolvimento do conteúdo pela designer</div><div class="mdir">${p.dir}</div>
+      <div class="mst">CTA</div><div class="mcta">${p.cta}</div>
+      ${p.ref ? `<div class="mst">Referência visual</div><div class="mref">${p.ref}</div>` : ''}`;
+  }
+
+  const validStories = (p.stories || []).filter(s => s.t && !s.t.startsWith('A definir'));
+  if (!p.open && validStories.length) {
+    html += `<div class="mst">Stories do dia (${validStories.length})</div><ul class="slist">`;
+    validStories.forEach(s => {
+      const hi = storyFocus && storyFocus.n === s.n ? 'background:var(--gold-pale);' : '';
+      html += `<li style="${hi}">
+        <span class="sn">${s.n}</span>
+        <span class="st">${s.t}</span>
+        <span class="sd">${s.d}</span>
+      </li>`;
+    });
+    html += '</ul>';
+  }
+
+  if (!p.open) {
+    html += `<button class="npsave" id="np-edit-trigger" style="margin-top:14px;">✏️ Editar este post</button>`;
+  }
+
+  document.getElementById('mbody').innerHTML = html;
+  document.getElementById('ov').classList.add('open');
+
+  if (!p.open) {
+    document.getElementById('np-edit-trigger').addEventListener('click', () => openNewPostModal(day, p));
+  }
+}
+
+function closeM(e) {
+  if (!e || e.target === document.getElementById('ov'))
+    document.getElementById('ov').classList.remove('open');
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') document.getElementById('ov').classList.remove('open'); });
+
+// ─────────────────────────────────────────────────────────────────
+// CRIAÇÃO / EDIÇÃO MANUAL DE POSTS
+// ─────────────────────────────────────────────────────────────────
+
+const PILAR_OPTS = [
+  ['p1','Arte da Destilação'],['p2','Sensorial Brasileiro'],['p3','Momentos que Pedem Arthur'],
+  ['p4','Orgulho Nacional'],['p5','Comunidade Arthur'],['pc','Comercial'],['pr','Respiro Visual'],
+];
+const FUNIL_OPTS = [
+  ['f1','1 · Aquisição / Descoberta'],['f2','2 · Ativação / Primeiro contato'],
+  ['f3','3 · Retenção / Relacionamento'],['f4','4 · Receita / Conversão'],['f5','5 · Recomendação / Advocacy'],
+];
+const JORNADA_OPTS = ['Descoberta','Consideração','Experiência','Primeira Compra','Recompra e Recomendação'];
+
+function selectHTML(id, opts, selected) {
+  return `<select class="npselect" id="${id}">` +
+    opts.map(o => {
+      const [val, label] = Array.isArray(o) ? o : [o, o];
+      return `<option value="${val}" ${val===selected?'selected':''}>${label}</option>`;
+    }).join('') + `</select>`;
+}
+
+function openNewPostModal(day, existing) {
+  const isEdit = !!existing;
+  const p = existing || {};
+
+  document.getElementById('mp').textContent = isEdit ? 'Editar post' : 'Novo post';
+  document.getElementById('mt').textContent = `Dia ${day} de julho`;
+  document.getElementById('mb').innerHTML = '';
+
+  const body = document.getElementById('mbody');
+  body.innerHTML = `
+    <div class="npfield">
+      <label class="nplabel">Pilar</label>
+      ${selectHTML('np-pilar', PILAR_OPTS, p.cls || 'p1')}
+    </div>
+    <div class="npgrid2">
+      <div class="npfield">
+        <label class="nplabel">Etapa do funil</label>
+        ${selectHTML('np-funil', FUNIL_OPTS, p.funil || 'f1')}
+      </div>
+      <div class="npfield">
+        <label class="nplabel">Jornada</label>
+        ${selectHTML('np-jornada', JORNADA_OPTS, p.jornada || 'Descoberta')}
+      </div>
+    </div>
+    <div class="npfield">
+      <label class="nplabel">Formato</label>
+      <input class="npinput" id="np-formato" value="${esc(p.formato||'')}" placeholder="Ex: Carrossel — 4 slides, Reels, Post estático...">
+    </div>
+    <div class="npfield">
+      <label class="nplabel">Objetivo do post</label>
+      <textarea class="nptextarea" id="np-objetivo" placeholder="O que esse post precisa alcançar?">${esc(p.objetivo||'')}</textarea>
+    </div>
+    <div class="npfield">
+      <label class="nplabel">Gancho / Tema</label>
+      <input class="npinput" id="np-gancho" value="${esc(p.gancho||'')}" placeholder="A frase de abertura do post">
+    </div>
+    <div class="npfield">
+      <label class="nplabel">Direcionamento para desenvolvimento do conteúdo pela designer</label>
+      <textarea class="nptextarea" id="np-dir" placeholder="Descreva o que a arte/vídeo precisa mostrar">${esc(p.dir||'')}</textarea>
+    </div>
+    <div class="npfield">
+      <label class="nplabel">CTA</label>
+      <input class="npinput" id="np-cta" value="${esc(p.cta||'')}" placeholder='"Frase de chamada para ação"'>
+    </div>
+    <div class="npfield">
+      <label class="nplabel">Requer captação?</label>
+      ${selectHTML('np-captacao', [['false','Não — ativos existentes'],['true','Sim — requer gravação/produção nova']], String(p.captacao||false))}
+    </div>
+    <button class="npsave" id="np-save">${isEdit ? 'Salvar alterações' : 'Adicionar post'}</button>
+    ${isEdit ? '<button class="npdel" id="np-delete">Remover este post</button>' : ''}
+  `;
+
+  document.getElementById('np-save').addEventListener('click', () => {
+    const newPost = {
+      cls: document.getElementById('np-pilar').value,
+      pilar: PILAR_OPTS.find(o => o[0] === document.getElementById('np-pilar').value)[1],
+      funil: document.getElementById('np-funil').value,
+      jornada: document.getElementById('np-jornada').value,
+      formato: document.getElementById('np-formato').value || 'Post estático',
+      objetivo: document.getElementById('np-objetivo').value,
+      gancho: document.getElementById('np-gancho').value || 'Novo post',
+      dir: document.getElementById('np-dir').value,
+      cta: document.getElementById('np-cta').value,
+      captacao: document.getElementById('np-captacao').value === 'true',
+      stories: (existing && existing.stories) || [],
+    };
+    POSTS[day] = newPost;
+    refreshCell(day);
+    closeM();
+  });
+
+  if (isEdit) {
+    document.getElementById('np-delete').addEventListener('click', () => {
+      delete POSTS[day];
+      refreshCell(day);
+      closeM();
+    });
+  }
+
+  document.getElementById('ov').classList.add('open');
+}
+
+function esc(str) {
+  return String(str).replace(/"/g, '&quot;').replace(/</g, '&lt;');
+}
+</script>
+</body>
+</html>
