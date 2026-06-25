@@ -555,6 +555,14 @@ function refreshCell(d) {
   if (ex) grid.replaceChild(buildCell(d), ex);
 }
 
+// julho 2026 começa numa quarta-feira — insere 2 células vazias (segunda e terça) antes do dia 1
+const leadingOffset = 2;
+for (let i = 0; i < leadingOffset; i++) {
+  const empty = document.createElement('div');
+  empty.className = 'cc empty';
+  grid.appendChild(empty);
+}
+
 for (let d = 1; d <= 31; d++) {
   grid.appendChild(buildCell(d));
 }
