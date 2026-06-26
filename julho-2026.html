@@ -92,6 +92,15 @@ main{max-width:1320px;margin:0 auto;padding:2rem 1.5rem 5rem;}
 .npdel{width:100%;background:transparent;color:#B03030;border:1px solid rgba(176,48,48,.3);padding:9px;border-radius:7px;font-size:11px;font-weight:500;cursor:pointer;margin-top:8px;transition:background .15s;}
 .npdel:hover{background:rgba(176,48,48,.06);}
 
+.storyrow{border:1px solid rgba(15,12,8,.1);border-radius:7px;padding:10px;margin-bottom:8px;background:#fcfaf6;}
+.sy-remove{font-size:10px;color:#B03030;background:transparent;border:none;cursor:pointer;margin-top:6px;padding:2px 0;}
+.sy-remove:hover{text-decoration:underline;}
+.sy-add{width:100%;background:transparent;border:1.5px dashed var(--gold);color:var(--gold-muted);padding:9px;border-radius:7px;font-size:11px;font-weight:500;cursor:pointer;margin-top:6px;transition:background .15s;}
+.sy-add:hover{background:rgba(184,134,11,.06);}
+
+.export-button{background:var(--ink);color:#fff;border:none;padding:11px 22px;border-radius:8px;font-size:12px;font-weight:600;letter-spacing:.03em;cursor:pointer;transition:opacity .15s;}
+.export-button:hover{opacity:.85;}
+
 .ov{display:none;position:fixed;inset:0;background:rgba(15,12,8,.65);backdrop-filter:blur(5px);z-index:100;align-items:center;justify-content:center;padding:1rem;}
 .ov.open{display:flex;}
 .mo{background:var(--cream);border-radius:14px;max-width:520px;width:100%;max-height:92vh;overflow-y:auto;box-shadow:0 32px 80px rgba(15,12,8,.35);}
@@ -178,6 +187,10 @@ footer em{color:var(--gold2);font-style:normal;}
   </div>
   <div id="grid" class="cal-grid"></div>
   <p class="drag-hint">💡 Arraste qualquer card para reorganizar o calendário entre os dias disponíveis</p>
+  <div style="text-align:center;margin-top:1rem;">
+    <button id="export-btn" class="export-button">⬇ Exportar calendário atualizado</button>
+    <p class="drag-hint" style="margin-top:.5rem;">Baixa um novo arquivo .html com todas as edições feitas até agora — envie esse arquivo de volta para republicar.</p>
+  </div>
 </main>
 
 <footer>Calendário editorial Arthur Whisky — Julho 2026 · <em>ami lab</em> · uso interno</footer>
@@ -208,17 +221,16 @@ const POSTS = {
 
 // ══════════════════════════════════════
 // SEMANA 1 — 1 a 5 jul (quarta a domingo)
-// feed: 2, 3, 5
 // ══════════════════════════════════════
 
 2:{
-  cls:'p2', pilar:'Sensorial Brasileiro', funil:'f1', jornada:'Descoberta', captacao:false,
-  formato:'Vídeo de produto — respiro',
-  objetivo:'Abrir o mês com desejo visual puro. Reforçar identidade da marca antes de qualquer argumento. Alto potencial de salvamento.',
-  gancho:'Arthur Whisky.',
-  dir:'Vídeo existente do Arthur Whisky sendo servido no copo — cor, fluxo, luz lateral. Nome da marca sobreposto em tipografia limpa. Música da playlist da marca. 6 a 12 segundos.',
-  cta:'Sem CTA.',
-  ref:'Referência de composição: @drink818 (ambiente colorido, minimalista, foco total no copo).',
+  cls:'p4', pilar:'Orgulho Nacional', funil:'f1', jornada:'Descoberta', captacao:false,
+  open:true,
+  formato:'Reels com fundador',
+  objetivo:'Abrir o mês reforçando o diferencial do Arthur com humanização.',
+  gancho:'Reels com Fundador',
+  dir:"Vídeo pronto: https://drive.google.com/file/d/13OQ0doLr2wLXdB4Nlv9ufHLoY2kN9VqB/view?usp=sharing",
+  cta:'O que você está esperando para provar?',
   stories:[
     {n:'S1 · Qui', t:'Abertura de mês', d:'"Julho chegou. E o seu Arthur Whisky também." — story simples com imagem de produto, sem CTA de venda. Tom de boas-vindas ao mês.'},
     {n:'S2 · Qui', t:'Enquete de retomada', d:'"Como você quer terminar a semana?" (com calma / com boa companhia / com um bom copo) — gera dado de comportamento e abre o mês com leveza.'},
@@ -227,11 +239,11 @@ const POSTS = {
 
 3:{
   cls:'p1', pilar:'Arte da Destilação', funil:'f2', jornada:'Consideração', captacao:false,
-  formato:'Carrossel — 4 slides',
+  formato:'Carrossel',
   objetivo:'Educar sobre um diferencial técnico ainda não explorado. Construir autoridade sem jargão e sem citar destilaria.',
   gancho:'A cevada que vira whisky passa por mais etapas do que você imagina.',
   dir:'Carrossel sobre o processo da cevada até o destilado. Slide 1: gancho. Slide 2: a maltagem — a cevada germina e depois é seca, processo que define parte do perfil de sabor. Slide 3: a moagem e a fermentação, onde o açúcar da cevada se transforma. Slide 4: "Tudo isso, antes da primeira gota tocar o barril." Fotos de produto disponíveis para ilustrar cada slide.',
-  cta:'"Cada etapa importa. Conheça o resultado na bio."',
+  cta:'"Cada etapa importa. Conheça o resultado final no link da bio."',
   stories:[
     {n:'S3 · Sex', t:'Fact da maltagem', d:'Um dado curto sobre o processo de maltagem da cevada — explica de forma simples sem soar técnico demais. Visual limpo, copy em uma linha.'},
     {n:'S4 · Sex', t:'Pergunta de curiosidade', d:'"Você sabia que antes de virar whisky, a cevada passa por um processo parecido com o de germinar uma semente?" — gera curiosidade e prepara para o carrossel.'},
@@ -243,9 +255,9 @@ const POSTS = {
   cls:'p3', pilar:'Momentos que Pedem Arthur', funil:'f1', jornada:'Descoberta', captacao:false,
   formato:'Post estático',
   objetivo:'Criar identificação com o momento de domingo. Ampliar ocasiões de consumo sem depender de data comercial.',
-  gancho:'Domingo de tarde também é hora de brindar.',
-  dir:'Arte com imagem de ambiente — copo servido, luz de fim de tarde, superfície de madeira. Copy de identificação com o ritmo do fim de semana. Tom intimista, sem glamour. Fotos de produto disponíveis.',
-  cta:'"Cria o seu ritual. O link está na bio."',
+  gancho:'Domingo também é dia de brindar.',
+  dir:'Arte com imagem + Copy de identificação com o fim de semana "Domingo também é dia de brindar."',
+  cta:'"Cria o seu ritual também aos domingos. O link está na bio."',
   stories:[
     {n:'S6 · Dom', t:'Convite ao ritual', d:'"Nem todo brinde precisa de motivo. Esse aqui é só por hoje." — imagem do copo servido, copy curta.'},
   ]
@@ -253,26 +265,26 @@ const POSTS = {
 
 // ══════════════════════════════════════
 // SEMANA 2 — 6 a 12 jul
-// feed: 7, 9, 10, 12
 // ══════════════════════════════════════
 
-7:{
-  cls:'p4', pilar:'Orgulho Nacional', funil:'f1', jornada:'Descoberta', captacao:false,
-  formato:'Carrossel — 4 slides',
-  objetivo:'Ampliar alcance com argumento de brasilidade. Reforçar a confiança no produto nacional sem confronto direto.',
-  gancho:'O Brasil não pediu permissão para fazer um bom whisky. Só fez.',
-  dir:'Carrossel editorial sem imagem de concorrente. Slide 1: gancho direto. Slide 2: o Brasil tem clima, técnica e dedicação — só faltava quem se atrevesse. Slide 3: o Arthur Whisky nasceu dessa convicção. Slide 4: "Prove antes de julgar." Tom confiante, sem defensividade. Fotos de produto disponíveis.',
-  cta:'"Você só vai entender quando provar. Link na bio."',
+6:{
+  cls:'p2', pilar:'Sensorial Brasileiro', funil:'f1', jornada:'Descoberta', captacao:true,
+  formato:'Reels - respiro',
+  objetivo:'Ampliar alcance com um vídeo de potencial compartilhável, especialmente na segunda-feira quando todos voltam à rotina de trabalho com alertas de notificações constantes.',
+  gancho:'[reels] Um som melhor do que qualquer notificação',
+  dir:'Um vídeo com takes curtos colocando gelo no copo e servindo o whisky. Podem ser feitos os mesmos 2 takes (colocando gelo + servindo o whisky) em 4 cenários diferentes. Durante todo o vídeo teremos o lettering com a seguinte copy: Esse som é melhor do que: Notificações de e-mail / Notificações do Teams / Mensagens de WhatsApp / Lembretes do calendário / O som do notebook ligando.',
+  cta:'Esse som é melhor do que qualquer notificação existente.',
+  ref:'Referência: https://www.instagram.com/reel/DY7jCyfoO3G/?igsh=MTc1d2Uwc3E5emZndA==',
   stories:[
-    {n:'S1 · Ter', t:'Caixa de perguntas', d:'"Você já se surpreendeu com algum produto brasileiro que esperava ser só ok? Me conta aqui."'},
-    {n:'S2 · Ter', t:'Resposta + conexão', d:'Usa uma das respostas para conectar com o Arthur Whisky: "é exatamente essa sensação que queremos te dar."'},
-    {n:'S3 · Qua', t:'CTA direto', d:'"Meio de semana pede uma pausa boa." — link de compra + imagem do produto.'},
+    {n:'S1 · Seg', t:'Caixa de perguntas', d:'"Qual notificação mais te estressa na semana? Me conta aqui." — gera identificação antes do Reels.'},
+    {n:'S2 · Seg', t:'Resposta + conexão', d:'Usa as respostas para conectar com o tema do Reels: "Por isso a gente trocaria todas elas por esse som."'},
+    {n:'S3 · Ter', t:'CTA direto', d:'"Meio de semana pede uma pausa boa." — link de compra + imagem do produto.'},
   ]
 },
 
-9:{
+8:{
   cls:'p1', pilar:'Arte da Destilação', funil:'f2', jornada:'Consideração', captacao:false,
-  formato:'Carrossel — 4 slides',
+  formato:'Carrossel',
   objetivo:'Aprofundar o argumento técnico sobre maturação. Educar sem jargão e sem citar a destilaria.',
   gancho:'O tempo é o ingrediente que nenhuma receita consegue acelerar.',
   dir:'Carrossel sobre o papel do tempo na maturação. Slide 1: gancho. Slide 2: o líquido entra no barril ainda incolor — é o tempo dentro da madeira que cria a cor e o sabor. Slide 3: no clima tropical, esse processo acontece de forma diferente do que em destilarias de clima frio. Slide 4: "O resultado está no copo. E no tempo que ele levou para chegar até ali." Fotos macro de produto disponíveis.',
@@ -286,12 +298,11 @@ const POSTS = {
 
 10:{
   cls:'p2', pilar:'Sensorial Brasileiro', funil:'f2', jornada:'Consideração', captacao:true,
-  formato:'Reels — coquetelaria',
+  formato:'Reels — coquetelaria [ou carrossel se não der para gravar]',
   objetivo:'Ampliar ocasiões de consumo. Baixar a barreira de quem não bebe whisky puro. Alto potencial de salvamento e compartilhamento.',
-  gancho:'Um drink simples pode virar o motivo da sua semana.',
+  gancho:'Um drink apreciar no final de semana.',
   dir:'Receita de Old Fashioned simplificado: Arthur Whisky, açúcar, angostura, casca de laranja. Filmado na cozinha ou no bar parceiro, luz natural, sem produção excessiva. Cada passo em close. Foco no resultado visual — cor, gelo, casca de laranja sendo torcida sobre o copo. 30 a 45 segundos.',
   cta:'"Salva essa receita. Ela vai salvar o seu fim de semana."',
-  ref:'Referência de estética: vídeos de preparo da @drinklucia (ingredientes organizados, montagem do drink) e o close de copo em mão da @brothersbond.',
   stories:[
     {n:'S7 · Sáb', t:'Receita em steps', d:'Story sequencial: ingrediente 1 → 2 → resultado. Formato receita rápida, direto e visual.'},
     {n:'S8 · Sáb', t:'Por que o Old Fashioned funciona', d:'Explica de forma simples por que esse drink clássico realça bem o perfil do whisky em vez de mascarar — educativo sem ser técnico.'},
@@ -300,12 +311,13 @@ const POSTS = {
 },
 
 12:{
-  cls:'p5', pilar:'Comunidade Arthur', funil:'f5', jornada:'Recompra e Recomendação', captacao:false,
-  formato:'Post estático — depoimento real',
-  objetivo:'Gerar prova social genuína. Humanizar a marca. Incentivar novos UGCs de forma orgânica.',
-  gancho:'Tem gente que prova uma vez e já vira da casa.',
-  dir:'Depoimento real de cliente fiel. Layout clean com a frase do cliente em destaque, nome e cidade. Pode vir acompanhado de foto do produto. O cliente é o hero do post. Solicitar depoimentos com antecedência.',
-  cta:'"Você também faz parte? Marca a gente no seu próximo copo."',
+  cls:'p5', pilar:'Comunidade Arthur', funil:'f3', jornada:'Experiência', captacao:true,
+  formato:'Reels ou carrossel',
+  objetivo:'Educacional com um toque de sensorial.',
+  gancho:'Como apreciar um bom whisky',
+  dir:'O post poderá ser feito em vídeo pelo Hed ou por UGC (se não for possível, podemos substituir por um carrossel que traria um tom mais educacional do que sensorial). A ideia é que sejam takes servindo o whisky e apreciando o momento até o primeiro gole. Para acompanhar e trazer retenção, a copy explica o passo a passo da maneira correta de degustar/apreciar o whisky.',
+  cta:'Siga essas dicas e comece com um Arthur.',
+  ref:'Referência: https://www.instagram.com/reel/DYaP5YVPAcH/?igsh=a210MjFldTdicHF2',
   stories:[
     {n:'S10 · Dom', t:'Repost com afeto', d:'Compartilha o depoimento nos stories com sticker de agradecimento + nome e cidade.'},
   ]
@@ -313,28 +325,28 @@ const POSTS = {
 
 // ══════════════════════════════════════
 // SEMANA 3 — 13 a 19 jul
-// feed: 14, 16, 17, 19
 // ══════════════════════════════════════
 
 14:{
   cls:'p3', pilar:'Momentos que Pedem Arthur', funil:'f3', jornada:'Experiência', captacao:false,
-  formato:'Carrossel — 4 slides',
-  objetivo:'Reforçar a filosofia de aproveitar o presente. Criar identificação com quem vive esperando o momento ideal.',
-  gancho:'Você está esperando o quê, exatamente?',
-  dir:'Carrossel com tom reflexivo e direto. Slide 1: gancho. Slide 2: tem gente que guarda a vida inteira esperando o momento perfeito — uma viagem, uma conquista, uma data redonda. Slide 3: e esquece que o momento perfeito é só uma decisão. Slide 4: "O Arthur Whisky está pronto. Você também já está." Fotos de produto disponíveis.',
-  cta:'"Não espera o momento. Cria ele."',
+  formato:'Reels',
+  objetivo:'Reforçar a filosofia de aproveitar todos os momentos. Criar identificação com quem vive esperando o momento ideal.',
+  gancho:'[reels] Não espere um motivo. Crie ele.',
+  dir:'Um único take que se repete com o lettering trazendo copys de momentos para celebrar com o whisky: Uma conversa após um longo tempo / Comemorar um aniversário / Depois de um longo dia / Comemorar um novo emprego ou uma conquista nele / Se lembrou de alguém especial / Teve um bom dia. Legenda: "Se você tem um motivo, sirva uma dose. Se você não tem, sirva uma dose também."',
+  cta:'"Não espere o motivo. Crie ele."',
+  ref:'Referência: https://www.instagram.com/reel/DYNTHozvWCP/?igsh=MXVtbzJyd2Y3czNyaw==',
   stories:[
-    {n:'S1 · Ter', t:'Caixa de perguntas', d:'"O que você está esperando para fazer hoje? Me conta aqui." — gera reflexão e identificação antes do carrossel.'},
-    {n:'S2 · Ter', t:'Resposta com leveza', d:'Usa uma resposta real para conectar com a ideia do carrossel — tom de cumplicidade, não de sermão.'},
+    {n:'S1 · Ter', t:'Caixa de perguntas', d:'"O que você está esperando para fazer hoje? Me conta aqui." — gera reflexão e identificação antes do Reels.'},
+    {n:'S2 · Ter', t:'Resposta com leveza', d:'Usa uma resposta real para conectar com a ideia do Reels — tom de cumplicidade, não de sermão.'},
     {n:'S3 · Qua', t:'CTA direto', d:'"Meio de semana também merece um bom motivo." — link de compra.'},
   ]
 },
 
 16:{
   cls:'p1', pilar:'Arte da Destilação', funil:'f2', jornada:'Consideração', captacao:false,
-  formato:'Carrossel — 4 slides',
+  formato:'Carrossel',
   objetivo:'Reforçar a autoridade do mestre destilador. Conectar o argumento técnico ao resultado sensorial sem citar a destilaria.',
-  gancho:'Tem gente que passa a vida toda só para acertar uma única coisa.',
+  gancho:'Uma vida inteira para chegar na receita perfeita.',
   dir:'Carrossel sobre dedicação técnica, complementando o conteúdo já trabalhado sobre o mestre destilador em junho. Slide 1: gancho. Slide 2: encontrar o ponto exato de equilíbrio entre cevada, barril e tempo não é sorte — é repetição, ajuste, anos de tentativa. Slide 3: o mestre destilador do Arthur Whisky carrega esse tipo de dedicação. Slide 4: "O resultado está no copo. E em cada detalhe que você não vê — mas sente." Fotos de produto disponíveis.',
   cta:'"Feito por quem entende. Conheça na bio."',
   stories:[
@@ -359,10 +371,10 @@ const POSTS = {
 19:{
   cls:'p2', pilar:'Sensorial Brasileiro', funil:'f1', jornada:'Descoberta', captacao:false,
   formato:'Vídeo de produto — respiro',
-  objetivo:'Despertar desejo puro pela imagem. Reforçar identidade visual da marca. Alto potencial de salvamento.',
-  gancho:'Tem cor que conta história antes de qualquer palavra.',
-  dir:'Foto ou vídeo curto do líquido no copo — cor de mel, luz que atravessa, fundo neutro. Copy sensorial sem argumento técnico. Composição limpa, elegante.',
-  cta:'"Prove antes de julgar."',
+  objetivo:'Despertar desejo puro. Reforçar identidade visual da marca. Alto potencial de compartilhamento.',
+  gancho:'Isso e uma longa conversa...',
+  dir:'Foto ou vídeo curto do líquido no copo. Copy sensorial e compartilhável sem argumento técnico. Composição limpa, elegante. Copy para lettering: "Isso e uma longa conversa".',
+  cta:'Boas conversas precisam de um bom whisky.',
   stories:[
     {n:'S8 · Dom', t:'Encerramento de semana', d:'"Mais uma semana, mais um bom motivo." — imagem leve, sem CTA de venda.'},
   ]
@@ -370,7 +382,6 @@ const POSTS = {
 
 // ══════════════════════════════════════
 // SEMANA 4 — 20 a 26 jul
-// feed: 21, 23, 24, 26
 // ══════════════════════════════════════
 
 21:{
@@ -392,7 +403,7 @@ const POSTS = {
   objetivo:'Trabalhar a frequência de consumo via ritual semanal. Reduzir o preciosismo que impede a recompra.',
   gancho:'Quinta-feira também é dia de celebrar alguma coisa.',
   dir:'Carrossel com tom leve. Slide 1: gancho. Slide 2: a semana não precisa terminar para você relaxar. Slide 3: um bom copo no meio da semana também é um jeito de cuidar de si. Slide 4: "Sem motivo especial. Só porque é quinta." Fotos de produto disponíveis.',
-  cta:'"Cria o seu próprio motivo. Link na bio."',
+  cta:'"Cria o seu próprio motivo para brindar todos os momentos. Link na bio."',
   stories:[
     {n:'S2 · Qui', t:'Enquete de meio de semana', d:'"Como está sua semana até agora?" (cansativa / tranquila / poderia estar melhor) — gera engajamento real antes do carrossel.'},
     {n:'S3 · Qui', t:'Resposta com empatia', d:'Conecta a resposta majoritária com a proposta do carrossel — tom de cumplicidade, sem forçar venda.'},
@@ -404,9 +415,9 @@ const POSTS = {
   cls:'p1', pilar:'Arte da Destilação', funil:'f2', jornada:'Consideração', captacao:false,
   formato:'Carrossel — 4 slides',
   objetivo:'Fechar o ciclo de conteúdo técnico do mês conectando todos os elementos do processo. Reforçar percepção de cuidado integral.',
-  gancho:'Cevada, barril, tempo e clima. Quatro coisas, um resultado.',
-  dir:'Carrossel-resumo que conecta os temas técnicos trabalhados ao longo do mês (cevada, barril, tempo, clima tropical) em uma narrativa única. Slide 1: gancho. Slide 2-4: cada elemento em uma frase curta e direta, sem repetir o que já foi dito em detalhe — é uma síntese visual. Fecha com: "Tudo isso, antes do primeiro gole." Fotos de produto disponíveis.',
-  cta:'"Agora você sabe o que está no seu copo. Conheça na bio."',
+  gancho:'Cevada, barril, tempo e clima. Quatro coisas para um resultado surpreendente.',
+  dir:'Carrossel-resumo que conecta os temas técnicos trabalhados ao longo do mês (cevada, barril, tempo, clima tropical) em uma narrativa única. Slide 1: gancho. Slide 2-4: cada elemento em uma frase curta e direta, sem repetir o que já foi dito em detalhe, é uma síntese visual. Fecha com: "Tudo isso para construir a experiência de um resultado surpreendente no primeiro gole." Fotos de produto disponíveis.',
+  cta:'"Agora você sabe o que está no seu copo. Conheça no link da bio."',
   stories:[
     {n:'S5 · Sex', t:'Recapitulação do mês', d:'"Esse mês a gente te contou sobre cevada, barril, tempo e clima. Qual desses te surpreendeu mais?" — enquete simples que fecha o ciclo educativo do mês.'},
     {n:'S6 · Sex', t:'CTA de fim de semana', d:'"Fim de semana. O Arthur Whisky está esperando." — link de compra.'},
@@ -427,10 +438,23 @@ const POSTS = {
 
 // ══════════════════════════════════════
 // SEMANA 5 — 27 a 31 jul
-// feed: 28, 30, 31
 // ══════════════════════════════════════
 
-28:{
+30:{
+  cls:'p5', pilar:'Comunidade Arthur', funil:'f3', jornada:'Recompra e Recomendação', captacao:true,
+  open:true,
+  formato:'Reels com fundador',
+  objetivo:'A definir — direcionamento, roteiro e referências serão entregues com antecedência.',
+  gancho:'A definir.',
+  dir:'',
+  cta:'A definir.',
+  stories:[
+    {n:'S4 · Ter', t:'A definir com o roteiro', d:'Stories complementares definidos junto ao direcionamento do Reels.'},
+    {n:'S5 · Ter', t:'Encerramento de mês', d:'"Julho foi bom. Agosto vem melhor." — imagem leve da garrafa, sem CTA de venda. Só afeto.'},
+  ]
+},
+
+31:{
   cls:'p2', pilar:'Sensorial Brasileiro', funil:'f2', jornada:'Consideração', captacao:true,
   formato:'Reels — coquetelaria',
   objetivo:'Fechar o mês com mais uma receita acessível. Ampliar ocasiões de consumo e gerar salvamentos.',
@@ -443,35 +467,12 @@ const POSTS = {
   ]
 },
 
-30:{
-  cls:'p4', pilar:'Orgulho Nacional', funil:'f1', jornada:'Descoberta', captacao:false,
-  formato:'Post estático',
-  objetivo:'Fechar o mês reforçando o posicionamento central da marca. Criar antecipação para agosto.',
-  gancho:'Prove antes de julgar. Sempre foi essa a proposta.',
-  dir:'Arte limpa com a garrafa em destaque, fundo escuro, luz lateral. Copy que resume a essência da marca sem soar repetitivo — fecha o mês reafirmando o convite central. Fotos de produto disponíveis.',
-  cta:'"O link está na bio. O resto você descobre no primeiro gole."',
-  stories:[
-    {n:'S3 · Qui', t:'Teaser de agosto', d:'"Agosto vem com novidade. Fica ligado." — sem revelar o que é.'},
-  ]
-},
-
-31:{
-  cls:'p5', pilar:'Comunidade Arthur', funil:'f3', jornada:'Recompra e Recomendação', captacao:true,
-  open:true,
-  formato:'Reels com fundador',
-  objetivo:'A definir — direcionamento, roteiro e referências serão entregues com antecedência.',
-  gancho:'A definir.',
-  dir:'',
-  cta:'A definir.',
-  stories:[
-    {n:'S4 · Sex', t:'A definir com o roteiro', d:'Stories complementares definidos junto ao direcionamento do Reels.'},
-    {n:'S5 · Sex', t:'Encerramento de mês', d:'"Julho foi bom. Agosto vem melhor." — imagem leve da garrafa, sem CTA de venda. Só afeto.'},
-  ]
-},
-
 }; // end POSTS
 
 // ─────────────────────────────────────────────────────────────────
+// guarda o HTML original (grid vazio) antes de qualquer renderização, para export limpo depois
+const ORIGINAL_HTML_TEMPLATE = document.documentElement.outerHTML;
+
 const grid = document.getElementById('grid');
 let dragSrc = null;
 
@@ -526,7 +527,9 @@ function renderPost(cell, p) {
   const btn = document.createElement('button');
   btn.className = 'pp ' + p.cls;
   btn.setAttribute('draggable', 'true');
-  const label = p.open ? '📹 Reels com fundador' : (p.gancho.length > 46 ? p.gancho.substring(0,44)+'…' : p.gancho);
+  const hasRealGancho = p.gancho && p.gancho !== 'A definir.' && p.gancho !== 'Novo post';
+  const baseLabel = hasRealGancho ? p.gancho : (p.formato || 'Reels com fundador');
+  const label = (p.open ? '📹 ' : '') + (baseLabel.length > 44 ? baseLabel.substring(0,42)+'…' : baseLabel);
   btn.textContent = label;
 
   const dot = document.createElement('span');
@@ -579,38 +582,31 @@ const funilMap = {
 function openM(p, storyFocus, day) {
   const [fl, fc] = funilMap[p.funil];
   document.getElementById('mp').textContent = p.pilar;
-  document.getElementById('mt').textContent = p.open ? 'Reels com Fundador' : p.gancho;
+  document.getElementById('mt').textContent = p.gancho && p.gancho !== 'A definir.' ? p.gancho : (p.formato || 'Post');
   document.getElementById('mb').innerHTML = `
     <span class="mb mb-pilar">${p.pilar}</span>
     <span class="mb ${fc}">${fl}</span>
     <span class="mb mb-j">Jornada: ${p.jornada}</span>
-    ${p.open ? '<span class="mb mb-open">📋 Direcionamento a confirmar</span>'
-      : p.captacao ? '<span class="mb mb-cap">📹 Requer captação</span>'
-      : '<span class="mb mb-atv">📷 Ativos existentes</span>'}
+    ${p.open ? '<span class="mb mb-open">📋 Direcionamento a confirmar</span>' : ''}
+    ${p.captacao ? '<span class="mb mb-cap">📹 Requer captação</span>' : '<span class="mb mb-atv">📷 Ativos existentes</span>'}
   `;
 
   let html = '';
 
   if (p.open) {
-    html = `
-      <div class="mst">Formato</div><div class="mfmt">${p.formato}</div>
-      <div class="mst">Pilar</div><div class="mfmt">${p.pilar}</div>
-      <div class="mst">Etapa do funil</div><div class="mfmt">${fl}</div>
-      <div class="mst">Jornada</div><div class="mfmt">${p.jornada}</div>
-      <div class="mst">Status</div>
-      <div class="mopen-notice">📋 Direcionamento completo, roteiro e referências para este Reels serão entregues com antecedência, seguindo o mesmo fluxo de aprovação de 15 dias já estabelecido.</div>`;
-  } else {
-    html = `
-      <div class="mst">Formato</div><div class="mfmt">${p.formato}</div>
-      <div class="mst">Objetivo do post</div><div class="mobj">${p.objetivo}</div>
-      <div class="mst">Gancho / Tema</div><div class="mgancho">${p.gancho}</div>
-      <div class="mst">Direcionamento para desenvolvimento do conteúdo pela designer</div><div class="mdir">${p.dir}</div>
-      <div class="mst">CTA</div><div class="mcta">${p.cta}</div>
-      ${p.ref ? `<div class="mst">Referência visual</div><div class="mref">${p.ref}</div>` : ''}`;
+    html += `<div class="mopen-notice">📋 Direcionamento completo, roteiro e referências para este Reels serão entregues com antecedência, seguindo o mesmo fluxo de aprovação de 15 dias já estabelecido. Os campos abaixo podem ser preenchidos a qualquer momento.</div>`;
   }
 
+  html += `
+    <div class="mst">Formato</div><div class="mfmt">${p.formato || '—'}</div>
+    <div class="mst">Objetivo do post</div><div class="mobj">${p.objetivo || '<span style="opacity:.5;font-style:italic;">Não definido</span>'}</div>
+    <div class="mst">Gancho / Tema</div><div class="mgancho">${p.gancho || '<span style="opacity:.5;font-style:italic;">Não definido</span>'}</div>
+    <div class="mst">Direcionamento para desenvolvimento do conteúdo pela designer</div><div class="mdir">${p.dir || '<span style="opacity:.5;font-style:italic;">Não definido</span>'}</div>
+    <div class="mst">CTA</div><div class="mcta">${p.cta || '<span style="opacity:.5;font-style:italic;">Não definido</span>'}</div>
+    <div class="mst">Referência visual</div><div class="mref">${p.ref ? p.ref : '<span style="opacity:.5;font-style:italic;">Sem referência cadastrada</span>'}</div>`;
+
   const validStories = (p.stories || []).filter(s => s.t && !s.t.startsWith('A definir'));
-  if (!p.open && validStories.length) {
+  if (validStories.length) {
     html += `<div class="mst">Stories do dia (${validStories.length})</div><ul class="slist">`;
     validStories.forEach(s => {
       const hi = storyFocus && storyFocus.n === s.n ? 'background:var(--gold-pale);' : '';
@@ -623,16 +619,12 @@ function openM(p, storyFocus, day) {
     html += '</ul>';
   }
 
-  if (!p.open) {
-    html += `<button class="npsave" id="np-edit-trigger" style="margin-top:14px;">✏️ Editar este post</button>`;
-  }
+  html += `<button class="npsave" id="np-edit-trigger" style="margin-top:14px;">✏️ Editar este post</button>`;
 
   document.getElementById('mbody').innerHTML = html;
   document.getElementById('ov').classList.add('open');
 
-  if (!p.open) {
-    document.getElementById('np-edit-trigger').addEventListener('click', () => openNewPostModal(day, p));
-  }
+  document.getElementById('np-edit-trigger').addEventListener('click', () => openNewPostModal(day, p));
 }
 
 function closeM(e) {
@@ -663,15 +655,52 @@ function selectHTML(id, opts, selected) {
     }).join('') + `</select>`;
 }
 
+function storyRowHTML(s, idx) {
+  return `
+    <div class="storyrow" data-idx="${idx}">
+      <div class="npgrid2" style="margin-bottom:6px;">
+        <input class="npinput sy-n" value="${esc(s.n||'')}" placeholder="Ex: S1 · Seg">
+        <input class="npinput sy-t" value="${esc(s.t||'')}" placeholder="Título do story">
+      </div>
+      <textarea class="nptextarea sy-d" placeholder="Descrição do story" style="min-height:44px;">${esc(s.d||'')}</textarea>
+      <button class="sy-remove" type="button" title="Remover story">✕ remover story</button>
+    </div>
+  `;
+}
+
 function openNewPostModal(day, existing) {
   const isEdit = !!existing;
   const p = existing || {};
+  let storiesState = (p.stories || []).map(s => ({...s}));
 
   document.getElementById('mp').textContent = isEdit ? 'Editar post' : 'Novo post';
   document.getElementById('mt').textContent = `Dia ${day} de julho`;
   document.getElementById('mb').innerHTML = '';
 
   const body = document.getElementById('mbody');
+
+  function syncStoriesStateFromDOM() {
+    const rows = body.querySelectorAll('.storyrow');
+    storiesState = Array.from(rows).map(row => ({
+      n: row.querySelector('.sy-n').value,
+      t: row.querySelector('.sy-t').value,
+      d: row.querySelector('.sy-d').value,
+    }));
+  }
+
+  function renderStoriesBlock() {
+    const wrap = body.querySelector('#np-stories-wrap');
+    wrap.innerHTML = storiesState.map((s, i) => storyRowHTML(s, i)).join('');
+    wrap.querySelectorAll('.sy-remove').forEach(btn => {
+      btn.addEventListener('click', () => {
+        syncStoriesStateFromDOM();
+        const idx = parseInt(btn.closest('.storyrow').dataset.idx);
+        storiesState.splice(idx, 1);
+        renderStoriesBlock();
+      });
+    });
+  }
+
   body.innerHTML = `
     <div class="npfield">
       <label class="nplabel">Pilar</label>
@@ -704,6 +733,10 @@ function openNewPostModal(day, existing) {
       <textarea class="nptextarea" id="np-dir" placeholder="Descreva o que a arte/vídeo precisa mostrar">${esc(p.dir||'')}</textarea>
     </div>
     <div class="npfield">
+      <label class="nplabel">Referência visual (opcional)</label>
+      <textarea class="nptextarea" id="np-ref" placeholder="Link ou descrição de referência visual, se houver">${esc(p.ref||'')}</textarea>
+    </div>
+    <div class="npfield">
       <label class="nplabel">CTA</label>
       <input class="npinput" id="np-cta" value="${esc(p.cta||'')}" placeholder='"Frase de chamada para ação"'>
     </div>
@@ -711,11 +744,36 @@ function openNewPostModal(day, existing) {
       <label class="nplabel">Requer captação?</label>
       ${selectHTML('np-captacao', [['false','Não — ativos existentes'],['true','Sim — requer gravação/produção nova']], String(p.captacao||false))}
     </div>
+    <div class="npfield">
+      <label class="nplabel">Status do direcionamento</label>
+      ${selectHTML('np-open', [['false','Direcionamento definido'],['true','Ainda em aberto — aguardando direcionamento/roteiro']], String(p.open||false))}
+    </div>
+    <div class="npfield">
+      <label class="nplabel">Stories do dia</label>
+      <div id="np-stories-wrap"></div>
+      <button class="sy-add" id="np-add-story" type="button">+ Adicionar story</button>
+    </div>
     <button class="npsave" id="np-save">${isEdit ? 'Salvar alterações' : 'Adicionar post'}</button>
     ${isEdit ? '<button class="npdel" id="np-delete">Remover este post</button>' : ''}
   `;
 
+  renderStoriesBlock();
+
+  document.getElementById('np-add-story').addEventListener('click', () => {
+    syncStoriesStateFromDOM();
+    storiesState.push({ n: `S${storiesState.length+1}`, t: '', d: '' });
+    renderStoriesBlock();
+  });
+
   document.getElementById('np-save').addEventListener('click', () => {
+    // collect stories from DOM (in current order)
+    const rows = body.querySelectorAll('.storyrow');
+    const collectedStories = Array.from(rows).map(row => ({
+      n: row.querySelector('.sy-n').value,
+      t: row.querySelector('.sy-t').value,
+      d: row.querySelector('.sy-d').value,
+    })).filter(s => s.t || s.d);
+
     const newPost = {
       cls: document.getElementById('np-pilar').value,
       pilar: PILAR_OPTS.find(o => o[0] === document.getElementById('np-pilar').value)[1],
@@ -725,9 +783,11 @@ function openNewPostModal(day, existing) {
       objetivo: document.getElementById('np-objetivo').value,
       gancho: document.getElementById('np-gancho').value || 'Novo post',
       dir: document.getElementById('np-dir').value,
+      ref: document.getElementById('np-ref').value,
       cta: document.getElementById('np-cta').value,
       captacao: document.getElementById('np-captacao').value === 'true',
-      stories: (existing && existing.stories) || [],
+      open: document.getElementById('np-open').value === 'true',
+      stories: collectedStories,
     };
     POSTS[day] = newPost;
     refreshCell(day);
@@ -748,6 +808,62 @@ function openNewPostModal(day, existing) {
 function esc(str) {
   return String(str).replace(/"/g, '&quot;').replace(/</g, '&lt;');
 }
+
+// ─────────────────────────────────────────────────────────────────
+// EXPORTAR CALENDÁRIO ATUALIZADO
+// ─────────────────────────────────────────────────────────────────
+function exportCalendar() {
+  // Serializa o objeto POSTS atual de volta para texto JS legível
+  function jsStr(v) {
+    return "'" + String(v).replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\n/g, '\\n') + "'";
+  }
+  function postToJS(p) {
+    const lines = [];
+    lines.push(`  cls:${jsStr(p.cls)}, pilar:${jsStr(p.pilar)}, funil:${jsStr(p.funil)}, jornada:${jsStr(p.jornada)}, captacao:${!!p.captacao},`);
+    if (p.open) lines.push(`  open:true,`);
+    lines.push(`  formato:${jsStr(p.formato||'')},`);
+    lines.push(`  objetivo:${jsStr(p.objetivo||'')},`);
+    lines.push(`  gancho:${jsStr(p.gancho||'')},`);
+    lines.push(`  dir:${jsStr(p.dir||'')},`);
+    if (p.ref) lines.push(`  ref:${jsStr(p.ref)},`);
+    lines.push(`  cta:${jsStr(p.cta||'')},`);
+    if (p.stories && p.stories.length) {
+      lines.push(`  stories:[`);
+      p.stories.forEach(s => {
+        lines.push(`    {n:${jsStr(s.n||'')}, t:${jsStr(s.t||'')}, d:${jsStr(s.d||'')}},`);
+      });
+      lines.push(`  ]`);
+    } else {
+      lines.push(`  stories:[]`);
+    }
+    return lines.join('\n');
+  }
+
+  let postsBlock = 'const POSTS = {\n\n';
+  Object.keys(POSTS).map(Number).sort((a,b)=>a-b).forEach(day => {
+    postsBlock += `${day}:{\n${postToJS(POSTS[day])}\n},\n\n`;
+  });
+  postsBlock += '}; // end POSTS';
+
+  // Usa o template original (grid vazio, antes da renderização) — evita duplicar o grid já populado
+  const fullHTML = ORIGINAL_HTML_TEMPLATE;
+  const scriptStart = fullHTML.indexOf('const POSTS = {');
+  const scriptEnd = fullHTML.indexOf('}; // end POSTS') + '}; // end POSTS'.length;
+
+  const newHTML = '<!DOCTYPE html>\n' + fullHTML.substring(0, scriptStart) + postsBlock + fullHTML.substring(scriptEnd);
+
+  const blob = new Blob([newHTML], { type: 'text/html' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'arthur_whisky_calendario_julho_2026_atualizado.html';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+document.getElementById('export-btn').addEventListener('click', exportCalendar);
 </script>
 </body>
 </html>
